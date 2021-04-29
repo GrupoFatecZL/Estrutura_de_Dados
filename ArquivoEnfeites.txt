@@ -1,10 +1,5 @@
 ** Novo Enfeite:
-908
-Batman
-Preto e Amarelo
-99.99
-** Novo Enfeite:
-733
-SuperMan
-Vermelho e Azul
-85.5
+400
+Barbie
+Rosa
+89.6
