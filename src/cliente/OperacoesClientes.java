@@ -43,6 +43,11 @@ public class OperacoesClientes {
 
 				case 3:
 					CPF_RNE = JOptionPane.showInputDialog("Digitar codigo do tema para busca: ");
+					ListarClientes();
+				break;
+
+				case 4:
+					CPF_RNE = Integer.parseInt(JOptionPane.showInputDialog("Digitar codigo do tema para busca: "));
 					BuscarClientes(CPF_RNE);
 				break;
 
@@ -82,6 +87,7 @@ public class OperacoesClientes {
 		
 		if (inicio == null) {								// verifica se a lista esta vazia
 			NO_Cliente n = new NO_Cliente(cliente);	
+
 			inicio = n;
 			n.prox = null;
 			n.anterior = null;									
@@ -158,6 +164,7 @@ public class OperacoesClientes {
 			System.out.println("Lista vazia");
 		} // if
 		else {
+
 			RecuperarListaClientes();
 			NO_Cliente aux = inicio;	// criação de duas variaveis
 			

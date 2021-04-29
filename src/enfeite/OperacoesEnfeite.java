@@ -184,6 +184,7 @@ public class OperacoesEnfeite {
 			descricao1 = inicio.enfeites.getDescricaoEnfeite();
 			preco1 = inicio.enfeites.getPreco();
 			JOptionPane.showMessageDialog(null, "Enfeite removido com sucesso!"); 
+
 			inicio = inicio.prox;			// passar para inicio o enderï¿½o do proximos endereï¿½o
 		} // fim else
 
@@ -210,7 +211,9 @@ public class OperacoesEnfeite {
 				preco1 = inicio.enfeites.getPreco();	
 
 				JOptionPane.showMessageDialog(null, "Enfeite removido com sucesso!"); 	
-				inicio = null;					// informa que ï¿½ o ultimo elemento da lista
+
+				inicio = null;					// informa que � o ultimo elemento da lista
+
 			} // fim if
 			else {		
 				NO_Enfeite aux = LocalizaDadoRemocaoFim(inicio, inicio);
