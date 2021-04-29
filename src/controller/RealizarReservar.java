@@ -16,11 +16,13 @@ public class RealizarReservar {
 	private LocalDate DataFesta = LocalDate.now();
     private LocalDate DataPrevista = DataFesta.plusDays(3);
     private LocalDate DataRetorno = LocalDate.now();
-    private LocalTime HoraInicio = LocalTime.now();
-	private LocalTime HoraPrevisto = HoraInicio.plusHours(10);
-    private LocalTime HoraRetorno = LocalTime.now();
+    private String HoraInicio = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+	private String HoraPrevisto = LocalTime.now().plusHours(12).format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+    private String HoraRetorno = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
     private String FormaDePagamento;
     private double PrecoFinal;
+	private String Cliente;
+    private String Enfeite;
 
 	private int codTema;
 	private String tema;
@@ -50,7 +52,8 @@ public class RealizarReservar {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog("Menu de Reserva: "+
 			"\n1- Realizar uma reserva"+
 			"\n2- Realizar uma devolução"+
-			"\n3- Consultar reservas"+
+			"\n3- Remover uma devolução"+
+			"\n4- Consultar reservas"+
 			"\n9- Voltar  "));
 			
 			switch (opcao) {
@@ -65,6 +68,11 @@ public class RealizarReservar {
 				break;
 
 				case 3:	
+                    JOptionPane.showMessageDialog(null, "Em desenvolvimento ... ");
+					//RemoverReserva()
+				break;
+
+				case 4:	
                     JOptionPane.showMessageDialog(null, "Em desenvolvimento ... ");
 					//ConsultarReserva()
 				break;
@@ -82,18 +90,28 @@ public class RealizarReservar {
 		OperacoesClientes buscarClientes = new OperacoesClientes();
 		OperacoesEnfeite buscarEnfeite = new OperacoesEnfeite();
 
-		Reserva reserva = new Reserva(DataFesta, DataPrevista, DataRetorno, HoraInicio, HoraPrevisto, HoraRetorno, FormaDePagamento, PrecoFinal, cliente, enfeite);
+		Reserva reserva = new Reserva(DataFesta, DataPrevista, DataRetorno, HoraInicio, HoraPrevisto, HoraRetorno, FormaDePagamento, PrecoFinal, Cliente, Enfeite);
 
 		CPF_RNE = JOptionPane.showInputDialog("Informe o CPF ou RNE do cliente: ");
+		buscarClientes.BuscarClientes(CPF_RNE);
+		Cliente = cliente.getNome();
+		reserva.setCliente(Cliente);
+		/*Precisamos de uma forma para validar se o "Cliente" já está cadastrado
 		if (CPF_RNE.equalsIgnoreCase(buscarClientes.BuscarClientes(CPF_RNE))) {
-			reserva.setCliente(cliente);
 			//Precisamos pegar a quantidade de aluguel do cliente e somar com mais um	
+			Cliente = cliente.getNome();
+			reserva.setCliente(Cliente);
 		} else {
 			JOptionPane.showMessageDialog(null, "Cliente não localizado");
 			MenuReservar();
 		}
+		*/
 		
 		tema = JOptionPane.showInputDialog("Informe o tema que deseja reservar: ");
+		buscarEnfeite.BuscarEnfeites(tema);
+		Enfeite = enfeite.getTemaEnfeite();
+		reserva.setEnfeite(Enfeite);
+		/*Precisamos de uma forma para validar se o "Tema" já está cadastrado
 		if (CPF_RNE.equalsIgnoreCase(buscarEnfeite.BuscarEnfeites(tema))) {
 			reserva.setEnfeite(enfeite);
 			CalcularDesconto(PrecoFinal);
@@ -102,7 +120,7 @@ public class RealizarReservar {
 			JOptionPane.showMessageDialog(null, "Tema não localizado");
 			MenuReservar();
 		}
-		
+		*/
 		FormaDePagamento = JOptionPane.showInputDialog("Informe a forma de pagamento: ");
 		reserva.setFormaDePagamento(FormaDePagamento);
 
@@ -195,6 +213,10 @@ public class RealizarReservar {
 	} // fim gravar  cliente
 
 	public void RealizarDevolucao() {
+
+	}
+
+	public void RemoverReserva() {
 
 	}
 

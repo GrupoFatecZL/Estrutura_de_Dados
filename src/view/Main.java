@@ -1,4 +1,5 @@
 package view;
+
 /*
 Elen Carvalho de Oliveira - RA: 1110482013042
 Luiz Antônio de Arruda - RA: 11100482013040
@@ -23,7 +24,7 @@ public class Main {
 			opcao = Integer.parseInt(JOptionPane.showInputDialog("Buffet: \n\n"+ 
 							"1 - Cadastrar Enfeites \n"+ 
 							"2 - Cadastrar Clientes\n"+ 
-							"3 - Registrar Aluguel \n"+ 
+							"3 - Registrar Reserva \n"+ 
 							"9 - Sair "));
 			
 			switch (opcao) {

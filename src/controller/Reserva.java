@@ -10,18 +10,18 @@ public class Reserva {
     private LocalDate DataFesta;
     private LocalDate DataPrevista;
     private LocalDate DataRetorno;
-    private LocalTime HoraInicio;
-    private LocalTime HoraPrevisto;
-    private LocalTime HoraRetorno;
+    private String HoraInicio;
+    private String HoraPrevisto;
+    private String HoraRetorno;
     private String FormaDePagamento;
     private double PrecoFinal;
 
-    private Clientes cliente;
-    private Enfeites enfeite;
+    private String Cliente;
+    private String Enfeite;
 
     public Reserva( LocalDate DataFesta, LocalDate DataPrevista, 
-    LocalDate DataRetorno, LocalTime HoraInicio, LocalTime HoraPrevisto, LocalTime HoraRetorno, 
-    String FormaDePagamento, double PrecoFinal, Clientes cliente, Enfeites enfeite ) {
+    LocalDate DataRetorno, String HoraInicio, String HoraPrevisto, String HoraRetorno, 
+    String FormaDePagamento, double PrecoFinal, String Cliente, String Enfeite ) {
         this.DataFesta = DataFesta;
         this.DataPrevista = DataPrevista;
         this.DataRetorno = DataRetorno;
@@ -30,32 +30,24 @@ public class Reserva {
         this.HoraRetorno = HoraRetorno;
         this.FormaDePagamento = FormaDePagamento;
         this.PrecoFinal = PrecoFinal;
-        this.cliente = cliente;
-        this.enfeite = enfeite;
+        this.Cliente = Cliente;
+        this.Enfeite = Enfeite;
     }
 
-    public Clientes getCliente() {
-        return cliente;
+    public String getCliente() {
+        return Cliente;
     }
 
-    public LocalTime getHoraPrevisto() {
-        return HoraPrevisto;
+    public void setCliente(String cliente) {
+        Cliente = cliente;
     }
 
-    public void setHoraPrevisto(LocalTime horaPrevisto) {
-        HoraPrevisto = horaPrevisto;
+    public String getEnfeite() {
+        return Enfeite;
     }
 
-    public void setCliente(Clientes cliente) {
-        this.cliente = cliente;
-    }
-
-    public Enfeites getEnfeite() {
-        return enfeite;
-    }
-
-    public void setEnfeite(Enfeites enfeite) {
-        this.enfeite = enfeite;
+    public void setEnfeite(String enfeite) {
+        Enfeite = enfeite;
     }
 
     public LocalDate getDataFesta() {
@@ -82,20 +74,28 @@ public class Reserva {
         DataRetorno = dataRetorno;
     }
     
-    public LocalTime getHoraInicio() {
+    public String getHoraInicio() {
         return HoraInicio;
     }
 
-    public void setHoraInicio(LocalTime horaInicio) {
+    public void setHoraInicio(String horaInicio) {
         HoraInicio = horaInicio;
     }
 
-    public LocalTime getHoraRetorno() {
+    public String getHoraRetorno() {
         return HoraRetorno;
     }
 
-    public void setHoraRetorno(LocalTime horaRetorno) {
+    public void setHoraRetorno(String horaRetorno) {
         HoraRetorno = horaRetorno;
+    }
+
+    public String getHoraPrevisto() {
+        return HoraPrevisto;
+    }
+
+    public void setHoraPrevisto(String horaPrevisto) {
+        HoraPrevisto = horaPrevisto;
     }
 
     public String getFormaDePagamento() {

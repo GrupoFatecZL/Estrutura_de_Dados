@@ -12,7 +12,7 @@ public class OperacoesEnfeite {
 	private String tema;
 	private String descricao;
 	private double preco;
-	private NO inicio;
+	private NO_Enfeite inicio;
 	
 	public OperacoesEnfeite() {
 		inicio = null;
@@ -73,16 +73,16 @@ public class OperacoesEnfeite {
 		enfeites.setPreco(preco);
 		
 		if (inicio == null) {							// verifica se a lista est� vazia
-			NO n = new NO(enfeites);	// carrega o valor de "e" no n� criado
+			NO_Enfeite n = new NO_Enfeite(enfeites);	// carrega o valor de "e" no n� criado
 			inicio = n;									// carrega inicio com "n" - novo n� criado
 		}  // fim if
 		else {
-				NO aux = inicio;				// cria endere�o de n� "aux" e carrega com o endere�o de inicio
-				while (aux.prox != null) {				// prox vem da classe contructor NO
-					aux = aux.prox;						// vai movendo aux para a proximo endere�o
-				} // fim while
-				NO n = new NO(enfeites);	// cria um novo n� com endere�o "n" e carrega dado "e"
-				aux.prox = n;								// carrega n aux o endere�o de n		
+			NO_Enfeite aux = inicio;				// cria endere�o de n� "aux" e carrega com o endere�o de inicio
+			while (aux.prox != null) {				// prox vem da classe contructor NO
+				aux = aux.prox;						// vai movendo aux para a proximo endere�o
+			} // fim while
+			NO_Enfeite n = new NO_Enfeite(enfeites);	// cria um novo n� com endere�o "n" e carrega dado "e"
+			aux.prox = n;								// carrega n aux o endere�o de n		
 		} // fim do else
 		GravarEnfeites();
 		JOptionPane.showMessageDialog(null, "Enfeite cadastrado e gravado com sucesso!");  
@@ -94,7 +94,7 @@ public class OperacoesEnfeite {
 	} // cadastro enfeites
 	
 	public void GravarEnfeites()  {
-		NO aux = inicio;
+		NO_Enfeite aux = inicio;
 		
 		try {
 			String fileName = "ArquivoEnfeites.txt";	
@@ -135,7 +135,7 @@ public class OperacoesEnfeite {
 		} // if
 		else {
 			RecuperarListaEnfeites();
-			NO aux1 = inicio;	// criaï¿½ï¿½o de duas variaveis
+			NO_Enfeite aux1 = inicio;	// criaï¿½ï¿½o de duas variaveis
 			
 			while (aux1 != null) {
 				System.out.println( "Código: " +aux1.enfeites.getCodTema() +
@@ -150,7 +150,7 @@ public class OperacoesEnfeite {
 	public String BuscarEnfeites(String tema) {
 		String aux = "";
 
-		for ( NO nodo = inicio; nodo != null; nodo = nodo.prox ) {
+		for ( NO_Enfeite nodo = inicio; nodo != null; nodo = nodo.prox ) {
 			aux = nodo.enfeites.getTemaEnfeite();
 			try {
 				if ( tema.equalsIgnoreCase(aux) ) {
@@ -213,7 +213,7 @@ public class OperacoesEnfeite {
 				inicio = null;					// informa que ï¿½ o ultimo elemento da lista
 			} // fim if
 			else {		
-				NO aux = LocalizaDadoRemocaoFim(inicio, inicio);
+				NO_Enfeite aux = LocalizaDadoRemocaoFim(inicio, inicio);
 
 				codTema1 = aux.prox.enfeites.getCodTema();				
 				tema1 = aux.prox.enfeites.getTemaEnfeite();				
@@ -231,7 +231,7 @@ public class OperacoesEnfeite {
 		" - Preço: " +preco1;
 	} // fim remover no final
 	
-	public NO LocalizaDadoRemocaoFim(NO aux1, NO aux2) {
+	public NO_Enfeite LocalizaDadoRemocaoFim(NO_Enfeite aux1, NO_Enfeite aux2) {
 		if ( aux1.prox != null ) {
 			return LocalizaDadoRemocaoFim(aux1.prox, aux1);
 		}
@@ -245,7 +245,7 @@ public class OperacoesEnfeite {
 		double preco1 = 0.0;
 
 		int i = 1; 
-		NO aux = inicio;	// criar um endereï¿½amento aux com valor inicial
+		NO_Enfeite aux = inicio;	// criar um endereï¿½amento aux com valor inicial
 		
 		if ( inicio == null ) {
 			JOptionPane.showMessageDialog(null, "Lista está vazia!");
@@ -302,7 +302,7 @@ public class OperacoesEnfeite {
 			} // fim else
 			else {						// remover qualquer posiï¿½ï¿½o
 				aux = inicio;			// carrega aux com inicio
-				NO aux2 = aux;			// cria endereï¿½amenteo aux 2 e copia aux
+				NO_Enfeite aux2 = aux;			// cria endereï¿½amenteo aux 2 e copia aux
 				
 				while(pos > 1) {
 					aux2 = aux;

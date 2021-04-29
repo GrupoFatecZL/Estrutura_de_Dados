@@ -14,7 +14,7 @@ public class OperacoesClientes {
    private String Endereco;
    private LocalDate DataCadastro = LocalDate.now();
    private int QtdeAluguel;
-   private NO inicio;
+   private NO_Cliente inicio;
 
    public OperacoesClientes() {
 		inicio = null;
@@ -81,21 +81,21 @@ public class OperacoesClientes {
 		cliente.setQtdeAluguel(QtdeAluguel);
 		
 		if (inicio == null) {								// verifica se a lista esta vazia
-			NO n = new NO(cliente);	
+			NO_Cliente n = new NO_Cliente(cliente);	
 			inicio = n;
 			n.prox = null;
 			n.anterior = null;									
 		}  // fim if
 		
 		else {
-				NO aux = inicio;				
-				while (aux.prox != null) {					// buscando o ultimo elemento da lista	
-					aux = aux.prox;						
-				} // fim while
-				NO n = new NO(cliente);		// cria um novo Nó
-				aux.prox = n;	
-				n.anterior = aux;
-				n.prox = null;
+			NO_Cliente aux = inicio;				
+			while (aux.prox != null) {					// buscando o ultimo elemento da lista	
+				aux = aux.prox;						
+			} // fim while
+			NO_Cliente n = new NO_Cliente(cliente);		// cria um novo Nó
+			aux.prox = n;	
+			n.anterior = aux;
+			n.prox = null;
 		} // fim do else
 		GravarCliente();
 		JOptionPane.showMessageDialog(null, "Cliente cadastrado e gravado com sucesso!");  
@@ -110,7 +110,7 @@ public class OperacoesClientes {
 	} // fim cadastro cliente
 	
 	public void GravarCliente()  {
-		NO aux = inicio;
+		NO_Cliente aux = inicio;
 		
 		try {
 			String fileName = "ArquivoCliente.txt";	
@@ -159,7 +159,7 @@ public class OperacoesClientes {
 		} // if
 		else {
 			RecuperarListaClientes();
-			NO aux = inicio;	// criação de duas variaveis
+			NO_Cliente aux = inicio;	// criação de duas variaveis
 			
 			while (aux != null) {
 				JOptionPane.showMessageDialog(null, "A lista será mostrada no console");
@@ -176,7 +176,7 @@ public class OperacoesClientes {
 	
 	public String BuscarClientes(String CPF_RNE) {
 		String aux = " ";
-		for(NO nodo = inicio; nodo != null; nodo = nodo.prox) {
+		for(NO_Cliente nodo = inicio; nodo != null; nodo = nodo.prox) {
 			aux = nodo.clientes.getCPF_RNE();
 			try {
 		       if (CPF_RNE.equalsIgnoreCase(aux)) {
@@ -251,15 +251,15 @@ public class OperacoesClientes {
 				inicio = null;					// informa que é o ultimo elemento da lista
 			} // fim IF
 			else {
-				NO aux1 = inicio;			// gerando duas varias, uma para varrer a lista
-				NO aux2 = inicio;
+				NO_Cliente aux1 = inicio;			// gerando duas varias, uma para varrer a lista
+				NO_Cliente aux2 = inicio;
 				
 				while (aux1.prox != null) {
 					aux2 = aux1;
 					aux1 = aux1.prox;
 				}
 
-				NO aux = LocalizaDadoRemocaoFim(inicio, inicio);
+				NO_Cliente aux = LocalizaDadoRemocaoFim(inicio, inicio);
 				
 				CPF_RNE = aux.clientes.getCPF_RNE();				
 				Nome = aux.clientes.getNome();				
@@ -281,7 +281,7 @@ public class OperacoesClientes {
 		" - Quantidade Aluguel: "+ QtdeAluguel;
 	} // fim remover no final
 	
-	public NO LocalizaDadoRemocaoFim(NO aux1, NO aux2) {
+	public NO_Cliente LocalizaDadoRemocaoFim(NO_Cliente aux1, NO_Cliente aux2) {
 		if (aux1.prox != null ) {
 			return LocalizaDadoRemocaoFim(aux1.prox, aux1);
 		}
@@ -297,7 +297,7 @@ public class OperacoesClientes {
 		int QtdeAluguel = 0;	
 		int i = 1; 
 		
-		NO aux = inicio;	// criar um endereçamento aux com valor inicial
+		NO_Cliente aux = inicio;	// criar um endereçamento aux com valor inicial
 		
 		if (inicio == null) {
 			JOptionPane.showConfirmDialog(null, "Lista Vazia !");
@@ -363,7 +363,7 @@ public class OperacoesClientes {
 			} // fim else
 			else {						// remover qualquer posição
 				aux = inicio;			// carrega aux com inicio
-				NO aux2 = aux;			// cria endereçamenteo aux 2 e copia aux
+				NO_Cliente aux2 = aux;			// cria endereçamenteo aux 2 e copia aux
 				
 				while(posicao > 1) {
 					aux2 = aux;
