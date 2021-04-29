@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.JOptionPane;
 
 import cliente.Clientes;
@@ -171,12 +173,12 @@ public class RealizarReservar {
 	            gravar.write("** Nova reserva: "); 
 				gravar.newLine();
 
-				cliente = aux.reservas.getCliente();
-	            gravar.write(String.valueOf(aux.reservas.getCliente())); 
+				Cliente = aux.reservas.getCliente();
+	            gravar.write(aux.reservas.getCliente()); 
 				gravar.newLine();
 
-				enfeite = aux.reservas.getEnfeite();
-	            gravar.write(String.valueOf(aux.reservas.getEnfeite())); 
+				Enfeite = aux.reservas.getEnfeite();
+	            gravar.write(aux.reservas.getEnfeite()); 
 				gravar.newLine();
 
 				FormaDePagamento = aux.reservas.getFormaDePagamento();

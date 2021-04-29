@@ -1,10 +1,6 @@
 package controller;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-
-import cliente.Clientes;
-import enfeite.Enfeites;
 
 public class Reserva {
     private LocalDate DataFesta;

@@ -1,9 +1,0 @@
-** Nova reserva: 
-cliente.Clientes@52102734
-enfeite.Enfeites@3541cb24
-Débito
-0.0
-2021-04-29
-15:59:49.997361800
-2021-05-02
-01:59:49.997361800

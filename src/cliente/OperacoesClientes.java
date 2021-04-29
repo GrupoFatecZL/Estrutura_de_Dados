@@ -43,11 +43,6 @@ public class OperacoesClientes {
 
 				case 3:
 					CPF_RNE = JOptionPane.showInputDialog("Digitar codigo do tema para busca: ");
-					ListarClientes();
-				break;
-
-				case 4:
-					CPF_RNE = Integer.parseInt(JOptionPane.showInputDialog("Digitar codigo do tema para busca: "));
 					BuscarClientes(CPF_RNE);
 				break;
 
