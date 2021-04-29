@@ -89,14 +89,14 @@ public class RealizarReservar {
 	} // fim Menu Reserva
     
 	public void RealizarReserva() {
-		OperacoesClientes buscarClientes = new OperacoesClientes();
-		OperacoesEnfeite buscarEnfeite = new OperacoesEnfeite();
+		//OperacoesClientes buscarClientes = new OperacoesClientes();
+		//OperacoesEnfeite buscarEnfeite = new OperacoesEnfeite();
 
 		Reserva reserva = new Reserva(DataFesta, DataPrevista, DataRetorno, HoraInicio, HoraPrevisto, HoraRetorno, FormaDePagamento, PrecoFinal, Cliente, Enfeite);
 
-		CPF_RNE = JOptionPane.showInputDialog("Informe o CPF ou RNE do cliente: ");
-		buscarClientes.BuscarClientes(CPF_RNE);
-		Cliente = cliente.getNome();
+		Cliente = JOptionPane.showInputDialog("Informe o CPF ou RNE do cliente: ");
+		//buscarClientes.BuscarClientes(Cliente);
+		//Cliente = cliente.getNome();
 		reserva.setCliente(Cliente);
 		/*Precisamos de uma forma para validar se o "Cliente" já está cadastrado
 		if (CPF_RNE.equalsIgnoreCase(buscarClientes.BuscarClientes(CPF_RNE))) {
@@ -109,9 +109,9 @@ public class RealizarReservar {
 		}
 		*/
 		
-		tema = JOptionPane.showInputDialog("Informe o tema que deseja reservar: ");
-		buscarEnfeite.BuscarEnfeites(tema);
-		Enfeite = enfeite.getTemaEnfeite();
+		Enfeite = JOptionPane.showInputDialog("Informe o tema que deseja reservar: ");
+		//buscarEnfeite.BuscarEnfeites(Enfeite);
+		//Enfeite = enfeite.getTemaEnfeite();
 		reserva.setEnfeite(Enfeite);
 		/*Precisamos de uma forma para validar se o "Tema" já está cadastrado
 		if (CPF_RNE.equalsIgnoreCase(buscarEnfeite.BuscarEnfeites(tema))) {
