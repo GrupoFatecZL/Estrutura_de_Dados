@@ -85,7 +85,7 @@ public class OperacoesEnfeite {
 				aux.prox = n;								// carrega n aux o endere�o de n		
 		} // fim do else
 		GravarEnfeites();
-		JOptionPane.showMessageDialog(null, "Enfeite cadastrado com sucesso!");  
+		JOptionPane.showMessageDialog(null, "Enfeite cadastrado e gravado com sucesso!");  
 		System.out.println("Enfeite Cadastrado: \n" + 
 							" Código: " +enfeites.getCodTema() + 
 							" - Tema: " +enfeites.getTemaEnfeite()+ 
@@ -125,9 +125,8 @@ public class OperacoesEnfeite {
 		     gravar.close();  			
 		} 
 		catch (Exception e) {
-			System.err.println("Ocorreu um erro!");
+			System.err.println("Ocorreu um erro na gravação!");
 		}  // fim try-catch
-		JOptionPane.showMessageDialog(null, "Lista gravada com sucesso!");
 	} // fim gravar  enfeites
 	
 	public void ListarEnfeites() {
@@ -148,7 +147,7 @@ public class OperacoesEnfeite {
 		} // fim else
 	} // fim lista enfeites
 	
-	public void BuscarEnfeites(String tema) {
+	public String BuscarEnfeites(String tema) {
 		String aux = "";
 
 		for ( NO nodo = inicio; nodo != null; nodo = nodo.prox ) {
@@ -159,13 +158,15 @@ public class OperacoesEnfeite {
 					System.out.println( "Código " +nodo.enfeites.getCodTema()+ 
 										" - Tema: "+ nodo.enfeites.getTemaEnfeite()+
 										" - Descrição: " + nodo.enfeites.getDescricaoEnfeite()+
-										" - Precç: "+nodo.enfeites.getPreco());
-					break;
+										" - Preço: "+nodo.enfeites.getPreco());
+										return tema;
 				} //fim if
+				break;
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Enfeite não localizado!"); 
 			}
 		} // fim for
+		return null;
 	} // fim buscar
 	
 	public String RemoverInicio() {			// 6 remover no inico da lista

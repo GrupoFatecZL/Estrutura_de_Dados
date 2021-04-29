@@ -1,5 +1,5 @@
 ** Novo Enfeite:
-643
-Batman
-Preto
-99.99
+8
+Carro
+Vermelho
+88.88

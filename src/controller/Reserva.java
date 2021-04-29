@@ -1,24 +1,61 @@
 package controller;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+
+import cliente.Clientes;
+import enfeite.Enfeites;
 
 public class Reserva {
     private LocalDate DataFesta;
     private LocalDate DataPrevista;
     private LocalDate DataRetorno;
-    private int HoraInicio;
-    private int HoraRetorno;
+    private LocalTime HoraInicio;
+    private LocalTime HoraPrevisto;
+    private LocalTime HoraRetorno;
     private String FormaDePagamento;
     private double PrecoFinal;
 
-    public Reserva(LocalDate DataFesta, LocalDate DataPrevista, LocalDate DataRetorno, int HoraInicio, int HoraRetorno, String FormaDePagamento, double PrecoFinal) {
+    private Clientes cliente;
+    private Enfeites enfeite;
+
+    public Reserva( LocalDate DataFesta, LocalDate DataPrevista, 
+    LocalDate DataRetorno, LocalTime HoraInicio, LocalTime HoraPrevisto, LocalTime HoraRetorno, 
+    String FormaDePagamento, double PrecoFinal, Clientes cliente, Enfeites enfeite ) {
         this.DataFesta = DataFesta;
         this.DataPrevista = DataPrevista;
         this.DataRetorno = DataRetorno;
         this.HoraInicio = HoraInicio;
+        this.HoraPrevisto = HoraPrevisto;
         this.HoraRetorno = HoraRetorno;
         this.FormaDePagamento = FormaDePagamento;
         this.PrecoFinal = PrecoFinal;
+        this.cliente = cliente;
+        this.enfeite = enfeite;
+    }
+
+    public Clientes getCliente() {
+        return cliente;
+    }
+
+    public LocalTime getHoraPrevisto() {
+        return HoraPrevisto;
+    }
+
+    public void setHoraPrevisto(LocalTime horaPrevisto) {
+        HoraPrevisto = horaPrevisto;
+    }
+
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
+    }
+
+    public Enfeites getEnfeite() {
+        return enfeite;
+    }
+
+    public void setEnfeite(Enfeites enfeite) {
+        this.enfeite = enfeite;
     }
 
     public LocalDate getDataFesta() {
@@ -45,19 +82,19 @@ public class Reserva {
         DataRetorno = dataRetorno;
     }
     
-    public int getHoraInicio() {
+    public LocalTime getHoraInicio() {
         return HoraInicio;
     }
 
-    public void setHoraInicio(int horaInicio) {
+    public void setHoraInicio(LocalTime horaInicio) {
         HoraInicio = horaInicio;
     }
 
-    public int getHoraRetorno() {
+    public LocalTime getHoraRetorno() {
         return HoraRetorno;
     }
 
-    public void setHoraRetorno(int horaRetorno) {
+    public void setHoraRetorno(LocalTime horaRetorno) {
         HoraRetorno = horaRetorno;
     }
 

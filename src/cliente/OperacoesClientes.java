@@ -149,7 +149,7 @@ public class OperacoesClientes {
 		     gravar.close();  			
 		} 
 		catch (Exception e) {
-			System.err.println("Ocorreu um erro!");
+			System.err.println("Ocorreu um erro na gravação!");
 		}  	// fim try-catch
 	} // fim gravar  cliente
 	
@@ -174,20 +174,26 @@ public class OperacoesClientes {
 		} // fim else
 	} // fim lista cliente
 	
-	public void BuscarClientes(String CPF_RNE) {
+	public String BuscarClientes(String CPF_RNE) {
 		String aux = " ";
 		for(NO nodo = inicio; nodo != null; nodo = nodo.prox) {
 			aux = nodo.clientes.getCPF_RNE();
-		       if (CPF_RNE == aux) {
+			try {
+		       if (CPF_RNE.equalsIgnoreCase(aux)) {
 					System.out.println( "CPF_RNE: " +nodo.clientes.getCPF_RNE() +
 										" - Nome: " +nodo.clientes.getNome()+
 										" - Endereço: "+ nodo.clientes.getEndereco() + 
 										" - Telefone: " + nodo.clientes.getTelefone() + 
 										" - Data Cadastro: " +nodo.clientes.getDataCadastro() + 
 										" - Quantidade Aluguel: " +nodo.clientes.getQtdeAluguel()); 
-		        break;
+										return CPF_RNE;
 		       }
+			   break;
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Cliente não localizado!"); 
+			}
 		} // fim for
+		return null;
 	} // fim buscar cliente
 	
 	public String RemoverInicio() {	 // 6 remover no inico da lista
