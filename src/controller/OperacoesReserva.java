@@ -9,11 +9,11 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 import cliente.Clientes;
-import cliente.OperacoesClientes;
+//import cliente.OperacoesClientes;
 import enfeite.Enfeites;
-import enfeite.OperacoesEnfeite;
+//import enfeite.OperacoesEnfeite;
 
-public class RealizarReservar {
+public class OperacoesReserva {
 
 	private LocalDate DataFesta = LocalDate.now();
     private LocalDate DataPrevista = DataFesta.plusDays(3);
@@ -43,7 +43,7 @@ public class RealizarReservar {
 	Clientes cliente = new Clientes(CPF_RNE, Nome, Endereco, Telefone, DataCadastro, QtdeAluguel);
 	Enfeites enfeite = new Enfeites(codTema, tema, descricao, preco);
 
-	public RealizarReservar() {
+	public OperacoesReserva() {
 		inicio = null;
 	}
 

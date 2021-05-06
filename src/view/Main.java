@@ -8,7 +8,7 @@ Wesley Silva de Assis - RA: 1110482013028
 
 import javax.swing.JOptionPane;
 import cliente.OperacoesClientes;
-import controller.RealizarReservar;
+import controller.OperacoesReserva;
 import enfeite.OperacoesEnfeite;
 
 public class Main {
@@ -16,7 +16,7 @@ public class Main {
 
 		OperacoesEnfeite enfeites = new OperacoesEnfeite();
 		OperacoesClientes clientes = new OperacoesClientes();
-		RealizarReservar reserva = new RealizarReservar();
+		OperacoesReserva reserva = new OperacoesReserva();
 
 		int opcao = 0;
 		
