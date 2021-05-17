@@ -166,7 +166,7 @@ public class OperacoesEnfeite {
 			}
 		} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Enfeite não localizado!"); 
-			}
+		}
 		return false;
 	} // fim buscar
 	
