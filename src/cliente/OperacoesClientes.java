@@ -42,7 +42,7 @@ public class OperacoesClientes {
 				break;
 
 				case 3:
-					CPF_RNE = JOptionPane.showInputDialog("Digitar codigo do tema para busca: ");
+					CPF_RNE = JOptionPane.showInputDialog("Digite o CPF do cliente que deseja buscar: ");
 					BuscarClientes(CPF_RNE);
 				break;
 
@@ -138,7 +138,7 @@ public class OperacoesClientes {
 				gravar.newLine();
 				
 				DataCadastro = aux.clientes.getDataCadastro();
-	            gravar.write(aux.clientes.getDataCadastro().toString() ); 
+	            gravar.write(aux.clientes.getDataCadastro().toString()); 
 				gravar.newLine();
 				
 				QtdeAluguel = aux.clientes.getQtdeAluguel();
@@ -155,16 +155,14 @@ public class OperacoesClientes {
 	} // fim gravar  cliente
 	
 	public void ListarClientes() {
+		RecuperarListaClientes();
 		if (inicio == null) {
-			System.out.println("Lista vazia");
+			System.out.println("A lista está vazia");
 		} // if
 		else {
-
-			RecuperarListaClientes();
 			NO_Cliente aux = inicio;	// criação de duas variaveis
-			
+			JOptionPane.showMessageDialog(null, "A lista será mostrada no console");
 			while (aux != null) {
-				JOptionPane.showMessageDialog(null, "A lista será mostrada no console");
 				System.out.println("\n CPF_RNE: " +aux.clientes.getCPF_RNE() +
 									" - Nome: " +aux.clientes.getNome()+
 									" - Endereço: "+ aux.clientes.getEndereco()+ 
@@ -176,26 +174,30 @@ public class OperacoesClientes {
 		} // fim else
 	} // fim lista cliente
 	
-	public String BuscarClientes(String CPF_RNE) {
-		String aux = " ";
-		for(NO_Cliente nodo = inicio; nodo != null; nodo = nodo.prox) {
-			aux = nodo.clientes.getCPF_RNE();
-			try {
+	public boolean BuscarClientes(String CPF_RNE) {
+		NO_Cliente nodo = inicio;
+		String aux = nodo.clientes.getCPF_RNE();
+		try {
+			while ( nodo != null ) {
 		       if (CPF_RNE.equalsIgnoreCase(aux)) {
+					JOptionPane.showMessageDialog(null, "Cliente será apresentado em console");
 					System.out.println( "CPF_RNE: " +nodo.clientes.getCPF_RNE() +
 										" - Nome: " +nodo.clientes.getNome()+
 										" - Endereço: "+ nodo.clientes.getEndereco() + 
 										" - Telefone: " + nodo.clientes.getTelefone() + 
 										" - Data Cadastro: " +nodo.clientes.getDataCadastro() + 
 										" - Quantidade Aluguel: " +nodo.clientes.getQtdeAluguel()); 
-										return CPF_RNE;
+										return true;
 		       }
-			   break;
-			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Cliente não localizado!"); 
+			   nodo = nodo.prox;
+			   aux = nodo.clientes.getCPF_RNE();
 			}
-		} // fim for
-		return null;
+		} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Cliente não localizado!"); 
+				return false;
+		}
+		JOptionPane.showMessageDialog(null, "Cliente não localizado!");
+		return false;
 	} // fim buscar cliente
 	
 	public String RemoverInicio() {	 // 6 remover no inico da lista
@@ -407,17 +409,9 @@ public class OperacoesClientes {
 				Nome = ler.readLine();
 				Endereco = ler.readLine();
 				Telefone = ler.readLine();
-				String dataCadastroRec = ler.readLine(); 
+				DataCadastro = LocalDate.parse(ler.readLine()); 
 				QtdeAluguel = Integer.parseInt(ler.readLine());
-
-				System.out.println( "CPF_RNE: "+ CPF_RNE +
-									" - Nome: "+ Nome + 
-									" - Endereco: "+ Endereco + 
-									" - Telefone: "+ Telefone + 
-									" - Data Cadastro: "+ dataCadastroRec + 
-									" - Quantidade Aluguel: "+ QtdeAluguel);
 				linha = ler.readLine();
-					
 			}
 			ler.close();
 		} 

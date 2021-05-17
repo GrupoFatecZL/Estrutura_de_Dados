@@ -147,26 +147,27 @@ public class OperacoesEnfeite {
 		} // fim else
 	} // fim lista enfeites
 	
-	public String BuscarEnfeites(String tema) {
-		String aux = "";
+	public boolean BuscarEnfeites(String tema) {
+		NO_Enfeite nodo = inicio;
+		String aux = nodo.enfeites.getTemaEnfeite();
 
-		for ( NO_Enfeite nodo = inicio; nodo != null; nodo = nodo.prox ) {
-			aux = nodo.enfeites.getTemaEnfeite();
-			try {
+		try {
+			while ( nodo != null ) {
 				if ( tema.equalsIgnoreCase(aux) ) {
 					JOptionPane.showMessageDialog(null, "Enfeite será apresentado no console!"); 
 					System.out.println( "Código " +nodo.enfeites.getCodTema()+ 
 										" - Tema: "+ nodo.enfeites.getTemaEnfeite()+
 										" - Descrição: " + nodo.enfeites.getDescricaoEnfeite()+
 										" - Preço: "+nodo.enfeites.getPreco());
-										return tema;
+										return true;
 				} //fim if
-				break;
-			} catch (Exception e) {
+				nodo = nodo.prox;
+				aux = nodo.enfeites.getTemaEnfeite();
+			}
+		} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Enfeite não localizado!"); 
 			}
-		} // fim for
-		return null;
+		return false;
 	} // fim buscar
 	
 	public String RemoverInicio() {			// 6 remover no inico da lista

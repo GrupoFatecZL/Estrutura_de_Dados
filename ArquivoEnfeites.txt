@@ -1,5 +1,5 @@
 ** Novo Enfeite:
-400
-Barbie
-Rosa
-89.6
+255
+Batman
+Preto
+99.6
