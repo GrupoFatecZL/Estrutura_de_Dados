@@ -90,25 +90,20 @@ public class RealizarReservar {
 	public void RealizarReserva() {
 		OperacoesClientes Clientes = new OperacoesClientes();
 		OperacoesEnfeite Enfeites = new OperacoesEnfeite();
-
 		Reserva reservas = new Reserva(DataFesta, DataPrevista, DataRetorno, HoraInicio, HoraPrevisto, HoraRetorno, FormaDePagamento, PrecoFinal, Cliente, Enfeite);
 
 		Cliente = JOptionPane.showInputDialog("Informe o CPF ou RNE do cliente: ");
-
-		try {
-			if (Clientes.BuscarClientes(Cliente) == true) {
-				//Precisamos pegar a quantidade de aluguel do cliente e somar com mais um	
-				reservas.setCliente(Cliente);
-			}
-		} catch (Exception e) {
+		if (Clientes.BuscarClientes(Cliente) != false) {
+			//Precisamos pegar a quantidade de aluguel do cliente e somar com mais um	
+			reservas.setCliente(Cliente);
+		} else {
 			JOptionPane.showMessageDialog(null, "Cliente não localizado");
-				MenuReservar();
+			MenuReservar();
 		}
 
-		
 		Enfeite = JOptionPane.showInputDialog("Informe o tema que deseja reservar: ");
 		boolean enfeite = Enfeites.BuscarEnfeites(Enfeite);
-		if ( enfeite == true ) {
+		if ( enfeite != false ) {
 			reservas.setEnfeite(Enfeite);
 			//CalcularDesconto(PrecoFinal);
 			//Precisamos pegar o preço do tema e CalcularDesconto(PrecoFinal);
@@ -119,6 +114,7 @@ public class RealizarReservar {
 
 		FormaDePagamento = JOptionPane.showInputDialog("Informe a forma de pagamento: ");
 		reservas.setFormaDePagamento(FormaDePagamento);
+
 		reservas.setDataFesta(DataFesta);
 		reservas.setHoraInicio(HoraInicio);
 		reservas.setDataPrevista(DataPrevista);
@@ -131,16 +127,15 @@ public class RealizarReservar {
 			n.prox = null;
 			n.anterior = null;									
 		}  // fim if
-		
 		else {
-				NO_Reserva aux = inicio;				
-				while (aux.prox != null) {					// buscando o ultimo elemento da lista	
-					aux = aux.prox;						
-				} // fim while
-				NO_Reserva n = new NO_Reserva(reservas);		// cria um novo Nó
-				aux.prox = n;	
-				n.anterior = aux;
-				n.prox = null;
+			NO_Reserva aux = inicio;				
+			while (aux.prox != null) {					// buscando o ultimo elemento da lista	
+				aux = aux.prox;						
+			} // fim while
+			NO_Reserva n = new NO_Reserva(reservas);		// cria um novo Nó
+			aux.prox = n;	
+			n.anterior = aux;
+			n.prox = null;
 		} // fim do else
 		GravarReserva();
 		JOptionPane.showMessageDialog(null, "Reserva realizada e gravada com sucesso!");  
