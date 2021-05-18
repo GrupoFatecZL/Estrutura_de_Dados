@@ -9,9 +9,11 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 import cliente.Clientes;
-//import cliente.OperacoesClientes;
+import cliente.NO_Cliente;
+import cliente.OperacoesClientes;
 import enfeite.Enfeites;
-//import enfeite.OperacoesEnfeite;
+import enfeite.NO_Enfeite;
+import enfeite.OperacoesEnfeite;
 
 public class OperacoesReserva {
 
@@ -42,6 +44,12 @@ public class OperacoesReserva {
 
 	Clientes cliente = new Clientes(CPF_RNE, Nome, Endereco, Telefone, DataCadastro, QtdeAluguel);
 	Enfeites enfeite = new Enfeites(codTema, tema, descricao, preco);
+	
+	NO_Cliente NoCliente = new NO_Cliente(cliente);
+	NO_Enfeite NoEnfeite = new NO_Enfeite(enfeite);
+
+	OperacoesClientes Clientes = new OperacoesClientes();
+	OperacoesEnfeite Enfeites = new OperacoesEnfeite();
 
 	public OperacoesReserva() {
 		inicio = null;
@@ -60,7 +68,6 @@ public class OperacoesReserva {
 			
 			switch (opcao) {
 				case 1:
-					//JOptionPane.showMessageDialog(null, "Em desenvolvimento ... ");
 					RealizarReserva();
 				break;
 
@@ -89,77 +96,66 @@ public class OperacoesReserva {
 	} // fim Menu Reserva
     
 	public void RealizarReserva() {
-		//OperacoesClientes buscarClientes = new OperacoesClientes();
-		//OperacoesEnfeite buscarEnfeite = new OperacoesEnfeite();
-
-		Reserva reserva = new Reserva(DataFesta, DataPrevista, DataRetorno, HoraInicio, HoraPrevisto, HoraRetorno, FormaDePagamento, PrecoFinal, Cliente, Enfeite);
+		Reserva reservas = new Reserva(DataFesta, DataPrevista, DataRetorno, HoraInicio, HoraPrevisto, HoraRetorno, FormaDePagamento, PrecoFinal, Cliente, Enfeite);
 
 		Cliente = JOptionPane.showInputDialog("Informe o CPF ou RNE do cliente: ");
-		//buscarClientes.BuscarClientes(Cliente);
-		//Cliente = cliente.getNome();
-		reserva.setCliente(Cliente);
-		/*Precisamos de uma forma para validar se o "Cliente" já está cadastrado
-		if (CPF_RNE.equalsIgnoreCase(buscarClientes.BuscarClientes(CPF_RNE))) {
-			//Precisamos pegar a quantidade de aluguel do cliente e somar com mais um	
-			Cliente = cliente.getNome();
-			reserva.setCliente(Cliente);
-		} else {
-			JOptionPane.showMessageDialog(null, "Cliente não localizado");
-			MenuReservar();
+		try {
+			if ( Clientes.BuscaParaReserva(Cliente) == true ) {
+				//Precisamos pegar a quantidade de aluguel do cliente e somar com mais um	
+				reservas.setCliente(Cliente);
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Cliente não localizado, faça o cadastro dele");
+			Clientes.CadastrarClientes();
 		}
-		*/
-		
-		Enfeite = JOptionPane.showInputDialog("Informe o tema que deseja reservar: ");
-		//buscarEnfeite.BuscarEnfeites(Enfeite);
-		//Enfeite = enfeite.getTemaEnfeite();
-		reserva.setEnfeite(Enfeite);
-		/*Precisamos de uma forma para validar se o "Tema" já está cadastrado
-		if (CPF_RNE.equalsIgnoreCase(buscarEnfeite.BuscarEnfeites(tema))) {
-			reserva.setEnfeite(enfeite);
-			CalcularDesconto(PrecoFinal);
-			//Precisamos pegar o preço do tema e CalcularDesconto(PrecoFinal);
-		} else {
-			JOptionPane.showMessageDialog(null, "Tema não localizado");
-			MenuReservar();
-		}
-		*/
-		FormaDePagamento = JOptionPane.showInputDialog("Informe a forma de pagamento: ");
-		reserva.setFormaDePagamento(FormaDePagamento);
 
-		reserva.setDataFesta(DataFesta);
-		reserva.setHoraInicio(HoraInicio);
-		reserva.setDataPrevista(DataPrevista);
-		reserva.setHoraRetorno(HoraPrevisto);
-		reserva.setPrecoFinal(PrecoFinal);
+		Enfeite = JOptionPane.showInputDialog("Informe o tema que deseja reservar: ");
+		try {
+			if ( Enfeites.BuscarEnfeites(Enfeite) == true ) {
+				reservas.setEnfeite(Enfeite);
+				//CalcularDesconto(PrecoFinal); //Precisamos pegar o preço do tema e CalcularDesconto(PrecoFinal);
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Tema não localizado, faça o cadastro dele");
+			Enfeites.CadastrarEnfeites();
+		}
+
+		FormaDePagamento = JOptionPane.showInputDialog("Informe a forma de pagamento: ");
+		reservas.setFormaDePagamento(FormaDePagamento);
+
+		reservas.setDataFesta(DataFesta);
+		reservas.setHoraInicio(HoraInicio);
+		reservas.setDataPrevista(DataPrevista);
+		reservas.setHoraRetorno(HoraPrevisto);
+		reservas.setPrecoFinal(PrecoFinal);
 		
 		if (inicio == null) {								// verifica se a lista esta vazia
-			NO_Reserva n = new NO_Reserva(reserva);	
+			NO_Reserva n = new NO_Reserva(reservas);	
 			inicio = n;
 			n.prox = null;
 			n.anterior = null;									
 		}  // fim if
-		
 		else {
-				NO_Reserva aux = inicio;				
-				while (aux.prox != null) {					// buscando o ultimo elemento da lista	
-					aux = aux.prox;						
-				} // fim while
-				NO_Reserva n = new NO_Reserva(reserva);		// cria um novo Nó
-				aux.prox = n;	
-				n.anterior = aux;
-				n.prox = null;
+			NO_Reserva aux = inicio;				
+			while (aux.prox != null) {					// buscando o ultimo elemento da lista	
+				aux = aux.prox;						
+			} // fim while
+			NO_Reserva n = new NO_Reserva(reservas);		// cria um novo Nó
+			aux.prox = n;	
+			n.anterior = aux;
+			n.prox = null;
 		} // fim do else
 		GravarReserva();
 		JOptionPane.showMessageDialog(null, "Reserva realizada e gravada com sucesso!");  
 		System.out.println("Reserva realizada: \n" + 
-							" Cliente: " + cliente.getNome() + 
-							" - Tema: " + enfeite.getTemaEnfeite() + 
-							" - Forma de Pagamento: " + reserva.getFormaDePagamento() +
-							" - Preço Final: " + reserva.getPrecoFinal() +
-							" \n Data da Festa: " + reserva.getDataFesta() +
-							" - Horário da Festa: " + reserva.getHoraInicio() +
-							" \n Data de devolução: " + reserva.getDataPrevista() +
-							" - Horário de devolução: " + reserva.getHoraPrevisto());
+							" Cliente: " + reservas.getCliente() + 
+							" - Tema: " + reservas.getEnfeite() + 
+							" - Forma de Pagamento: " + reservas.getFormaDePagamento() +
+							" - Preço Final: " + reservas.getPrecoFinal() +
+							" \n Data da Festa: " + reservas.getDataFesta() +
+							" - Horário da Festa: " + reservas.getHoraInicio() +
+							" \n Data de devolução: " + reservas.getDataPrevista() +
+							" - Horário de devolução: " + reservas.getHoraPrevisto());
 	} // fim cadastro cliente
 	
 	public void GravarReserva()  {

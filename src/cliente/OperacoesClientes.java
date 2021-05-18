@@ -173,7 +173,27 @@ public class OperacoesClientes {
 			} // fim while
 		} // fim else
 	} // fim lista cliente
-	
+
+	public boolean BuscaParaReserva(String Cliente) {
+		RecuperarListaClientes();
+		NO_Cliente nodo = inicio;
+		String aux = nodo.clientes.getCPF_RNE();
+		try {
+			while ( nodo != null ) {
+		       if (Cliente.equalsIgnoreCase(aux)) {
+					return true;
+		       }
+			   nodo = nodo.prox;
+			   aux = nodo.clientes.getCPF_RNE();
+			}
+		} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Cliente não localizado!9"); 
+				return false;
+		}
+		JOptionPane.showMessageDialog(null, "Cliente não localizado!");
+		return false;
+	}
+
 	public boolean BuscarClientes(String CPF_RNE) {
 		NO_Cliente nodo = inicio;
 		String aux = nodo.clientes.getCPF_RNE();

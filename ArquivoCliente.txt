@@ -1,7 +1,7 @@
 ** Novo cliente: 
 123456
-Elen
-Rua 01
-987654
+plo
+pl
+987
 2021-05-17
 0

@@ -1,5 +1,5 @@
 ** Novo Enfeite:
-255
+528
 Batman
 Preto
-99.6
+99.9
