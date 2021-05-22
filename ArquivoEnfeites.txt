@@ -1,5 +1,4 @@
-** Novo Enfeite:
-528
-Batman
-Preto
-99.9
+
+- Novo Enfeite, 641, Elen, Rosa, 34.53
+- Novo Enfeite, 195, Batman, Preto, 45.4
+- Novo Enfeite, 765, Superman, vermelho, 45.3

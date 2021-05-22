@@ -114,36 +114,30 @@ public class OperacoesClientes {
 		NO_Cliente aux = inicio;
 		
 		try {
-			String fileName = "ArquivoCliente.txt";	
+			String fileName = "ArquivoClientes.txt";	
 		    BufferedWriter gravar = new BufferedWriter(new FileWriter( fileName ));	
 		
 			while (aux != null) {
-	            gravar.write("** Novo cliente: "); 
 				gravar.newLine();
+	            gravar.write("- Novo cliente, "); 
 
 				CPF_RNE = aux.clientes.getCPF_RNE();
-	            gravar.write(aux.clientes.getCPF_RNE()); 
-				gravar.newLine();
+	            gravar.write(aux.clientes.getCPF_RNE()+", ");
 
 				Nome = aux.clientes.getNome();
-	            gravar.write(aux.clientes.getNome()); 
-				gravar.newLine();
+	            gravar.write(aux.clientes.getNome()+", ");
 
 				Endereco = aux.clientes.getEndereco();
-	            gravar.write(aux.clientes.getEndereco()); 
-				gravar.newLine();
+	            gravar.write(aux.clientes.getEndereco()+", "); 
 
 				Telefone = aux.clientes.getTelefone();
-	            gravar.write(aux.clientes.getTelefone()); 
-				gravar.newLine();
+	            gravar.write(aux.clientes.getTelefone()+", ");
 				
 				DataCadastro = aux.clientes.getDataCadastro();
-	            gravar.write(aux.clientes.getDataCadastro().toString()); 
-				gravar.newLine();
+	            gravar.write(aux.clientes.getDataCadastro().toString()+", "); 
 				
 				QtdeAluguel = aux.clientes.getQtdeAluguel();
 	            gravar.write(String.valueOf(aux.clientes.getQtdeAluguel())); 
-				gravar.newLine();
 
 				aux = aux.prox;
 			}

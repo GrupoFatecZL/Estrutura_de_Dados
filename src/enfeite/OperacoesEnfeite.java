@@ -101,24 +101,20 @@ public class OperacoesEnfeite {
 		    BufferedWriter gravar = new BufferedWriter(new FileWriter( fileName ));	
 		
 			while (aux != null) {
-	            gravar.write("** Novo Enfeite:"); 
 				gravar.newLine();
+	            gravar.write("- Novo Enfeite, ");
 
 				codTema = aux.enfeites.getCodTema();
-	            gravar.write(String.valueOf(aux.enfeites.getCodTema())); 
-				gravar.newLine();
+	            gravar.write(String.valueOf(aux.enfeites.getCodTema()+", ")); 
 
 				tema = aux.enfeites.getTemaEnfeite();
-	            gravar.write(aux.enfeites.getTemaEnfeite()); 
-				gravar.newLine();
+	            gravar.write(aux.enfeites.getTemaEnfeite()+", "); 
 
 				descricao = aux.enfeites.getDescricaoEnfeite();
-	            gravar.write(aux.enfeites.getDescricaoEnfeite()); 
-				gravar.newLine();
+	            gravar.write(aux.enfeites.getDescricaoEnfeite()+", "); 
 
 				preco = aux.enfeites.getPreco();
 	            gravar.write(String.valueOf(aux.enfeites.getPreco())); 
-				gravar.newLine();
 
 				aux = aux.prox;
 			}
