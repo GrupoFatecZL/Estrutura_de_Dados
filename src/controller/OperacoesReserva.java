@@ -30,6 +30,7 @@ public class OperacoesReserva {
     private String FormaDePagamento;
     private double PrecoFinal;
 	private String Cliente;
+	private int QtdeAluguel;
     private String Enfeite;
 
 	private int codTema;
@@ -42,11 +43,10 @@ public class OperacoesReserva {
 	private String Telefone;
 	private String Endereco;
 	private LocalDate DataCadastro = LocalDate.now();
-	private int QtdeAluguel;
 
 	private NO_Reserva inicio;
 
-	Clientes cliente = new Clientes(CPF_RNE, Nome, Endereco, Telefone, DataCadastro, QtdeAluguel);
+	Clientes cliente = new Clientes(CPF_RNE, Nome, Endereco, Telefone, DataCadastro);
 	Enfeites enfeite = new Enfeites(codTema, tema, descricao, preco);
 	
 	NO_Cliente NoCliente = new NO_Cliente(cliente);
@@ -89,7 +89,8 @@ public class OperacoesReserva {
 				case 4:	
 					String reserva = JOptionPane.showInputDialog("Informe algo informado na reservas: ");
 					try {
-						BuscarReserva(reserva);
+						String arquivo = "ArquivoReserva.txt";
+						BuscarItemArquivo(reserva, arquivo);
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, "Reserva não localizada");
 					}
@@ -98,7 +99,8 @@ public class OperacoesReserva {
 				case 5:	
 					String devolucao = JOptionPane.showInputDialog("Informe algo informado na reservas: ");
 					try {
-						BuscarDevolucao(devolucao);
+						String arquivo = "ArquivoDevolucao.txt";
+						BuscarItemArquivo(devolucao, arquivo);
 					}catch (Exception e) {
 						JOptionPane.showMessageDialog(null, "Reserva não localizada");
 					}
@@ -116,23 +118,25 @@ public class OperacoesReserva {
     
 	public void RealizarReserva() {
 
-		Reserva reservas = new Reserva(DataFesta, DataPrevista, DataRetorno, HoraInicio, HoraPrevisto, HoraRetorno, FormaDePagamento, PrecoFinal, Cliente, Enfeite);
+		Reserva reservas = new Reserva(DataFesta, DataPrevista, DataRetorno, HoraInicio, HoraPrevisto, HoraRetorno, FormaDePagamento, PrecoFinal, QtdeAluguel, Cliente, Enfeite);
 
 		Cliente = JOptionPane.showInputDialog("Informe o CPF/RNE ou nome do cliente: ");
 		try {
 			String arq = "ArquivoClientes.txt";
-			if ( lerArquivos( arq, Cliente ) == true ) {
-				//Precisamos pegar a quantidade de aluguel do cliente e somar com mais um	
+			if ( lerArquivos( arq, Cliente ) == true ) {	
 				reservas.setCliente(Cliente);
 			} else {
 				JOptionPane.showMessageDialog(null, "Cliente não localizado, faça o cadastro dele");
 				Clientes.CadastrarClientes();
 				reservas.setCliente(Cliente);
 			}
+
+			QtdeAluguel = CalcularQtdeAluguel(Cliente);
+			reservas.setQtdeAluguel(QtdeAluguel);
+
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
 		}
-
 
 		Enfeite = JOptionPane.showInputDialog("Informe o tema que deseja reservar: ");
 		try {
@@ -184,7 +188,8 @@ public class OperacoesReserva {
 							" \n Data da Festa: " + reservas.getDataFesta() +
 							" - Horário da Festa: " + reservas.getHoraInicio() +
 							" \n Data de devolução: " + reservas.getDataPrevista() +
-							" - Horário de devolução: " + reservas.getHoraPrevisto());
+							" - Horário de devolução: " + reservas.getHoraPrevisto()+
+							" - Quantidade de Aluguel: " + reservas.getQtdeAluguel());
 	} 
 	
 	public void GravarReserva()  {
@@ -219,7 +224,10 @@ public class OperacoesReserva {
 	            gravar.write(aux.reservas.getDataPrevista().toString()+", "); 
 
 				HoraPrevisto = aux.reservas.getHoraPrevisto();
-	            gravar.write(String.valueOf(aux.reservas.getHoraPrevisto())); 
+	            gravar.write(String.valueOf(aux.reservas.getHoraPrevisto())+", "); 
+
+				QtdeAluguel = aux.reservas.getQtdeAluguel();
+				gravar.write(String.valueOf(aux.reservas.getQtdeAluguel()));
 
 				aux = aux.prox;
 			}
@@ -267,15 +275,18 @@ public class OperacoesReserva {
 		}
 	}
 
-	public void BuscarReserva(String buscador) throws IOException {
-		String nome = "ArquivoReserva.txt"; 
-		File arq = new File(nome); 
+	
+	public int BuscarQtdeReserva(String buscador) throws IOException {
+		int cont = 0;
+		String arquivo = "ArquivoReserva.txt"; 
+		File arq = new File(arquivo); 
 
 		if (arq.exists() && arq.isFile()) {
 			FileInputStream fluxo = new FileInputStream(arq);
 			InputStreamReader leitor = new InputStreamReader(fluxo);
 			buffer = new BufferedReader(leitor);
 			String linha = buffer.readLine();
+			cont = 1;
 			
 			while (linha != null) {
 				String [] frase;
@@ -283,10 +294,7 @@ public class OperacoesReserva {
 
 				for (String palavra: frase) {
 					if (palavra.equalsIgnoreCase(buscador)) {
-						JOptionPane.showMessageDialog(null, "Reserva do Enfeite: "+frase[1] +
-															", feita por: "+frase[0]+", no dia: "+frase[4]);
-						
-						CalcularAtraso(frase);
+						cont++;
 					}
 				}
 				linha = buffer.readLine();
@@ -295,13 +303,14 @@ public class OperacoesReserva {
 			leitor.close();
 			fluxo.close();
 		} else {
-			throw new IOException("Arquivo Invalido");
+			cont++;
 		}
+		return cont;
 	}	
 
-	public void BuscarDevolucao(String buscador) throws IOException {
-		String nome = "ArquivoDevolucao.txt"; 
-		File arq = new File(nome); 
+	
+	public void BuscarItemArquivo( String buscador, String arquivo ) throws IOException {
+		File arq = new File(arquivo); 
 
 		if (arq.exists() && arq.isFile()) {
 			FileInputStream fluxo = new FileInputStream(arq);
@@ -315,8 +324,13 @@ public class OperacoesReserva {
 
 				for (String palavra: frase) {
 					if (palavra.equalsIgnoreCase(buscador)) {
-						JOptionPane.showMessageDialog(null, "Devolução do Enfeite: "+frase[1] +
-															", feita por: "+frase[0]+", no dia: "+frase[4]);
+						if (arquivo.equalsIgnoreCase("ArquivoReserva.txt")) {
+							JOptionPane.showMessageDialog(null, "Reserva do Enfeite: "+frase[1] +
+																", feita por: "+frase[0]+", no dia: "+frase[4]);
+						} else {
+							JOptionPane.showMessageDialog(null, "Devolução do Enfeite: "+frase[1] +
+																", feita por: "+frase[0]+", no dia: "+frase[4]);
+						}
 					}
 				}
 				linha = buffer.readLine();
@@ -350,6 +364,7 @@ public class OperacoesReserva {
 					if (palavra.equalsIgnoreCase(buscador)) {
 						JOptionPane.showMessageDialog(null, "Localizamos: "+frase[2]);
 						result = true;
+						return result;
 					}
 				}
 				linha = buffer.readLine();
@@ -361,5 +376,10 @@ public class OperacoesReserva {
 			throw new IOException("Arquivo Invalido");
 		}
 		return result;
+	}
+
+	private int CalcularQtdeAluguel(String Cliente) throws IOException {
+		QtdeAluguel = BuscarQtdeReserva(Cliente);
+		return QtdeAluguel;
 	}
 }

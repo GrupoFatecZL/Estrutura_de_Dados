@@ -13,7 +13,6 @@ public class OperacoesClientes {
    private String Telefone;
    private String Endereco;
    private LocalDate DataCadastro = LocalDate.now();
-   private int QtdeAluguel;
    private NO_Cliente inicio;
 
    public OperacoesClientes() {
@@ -61,7 +60,7 @@ public class OperacoesClientes {
 	} // fim MenuClientes()
 
 	public void CadastrarClientes() {
-		Clientes cliente = new Clientes(CPF_RNE, Nome, Endereco, Telefone, DataCadastro, QtdeAluguel);
+		Clientes cliente = new Clientes(CPF_RNE, Nome, Endereco, Telefone, DataCadastro);
 
 		CPF_RNE = JOptionPane.showInputDialog("Digite CPF/RNE: ");
 		cliente.setCPF_RNE(CPF_RNE);
@@ -76,9 +75,7 @@ public class OperacoesClientes {
 		cliente.setTelefone(Telefone);
 		
 		cliente.setDataCadastro(DataCadastro);
-		
-		QtdeAluguel = 0;
-		cliente.setQtdeAluguel(QtdeAluguel);
+
 		
 		if (inicio == null) {								// verifica se a lista esta vazia
 			NO_Cliente n = new NO_Cliente(cliente);	
@@ -105,8 +102,7 @@ public class OperacoesClientes {
 							" - Nome: " + cliente.getNome() + 
 							" - Endereco: " + cliente.getEndereco() +
 							" - Telefone: " + cliente.getTelefone() +
-							" - Data Cadastro: " + cliente.getDataCadastro() +
-							" - Quantidade aluguel: " + cliente.getQtdeAluguel() );
+							" - Data Cadastro: " + cliente.getDataCadastro());
 
 	} // fim cadastro cliente
 	
@@ -136,9 +132,6 @@ public class OperacoesClientes {
 				DataCadastro = aux.clientes.getDataCadastro();
 	            gravar.write(aux.clientes.getDataCadastro().toString()+", "); 
 				
-				QtdeAluguel = aux.clientes.getQtdeAluguel();
-	            gravar.write(String.valueOf(aux.clientes.getQtdeAluguel())); 
-
 				aux = aux.prox;
 			}
 		     gravar.close();  			
@@ -161,8 +154,7 @@ public class OperacoesClientes {
 									" - Nome: " +aux.clientes.getNome()+
 									" - Endereço: "+ aux.clientes.getEndereco()+ 
 									" - Telefone: " + aux.clientes.getTelefone()+ 
-									" - Data Cadastro: " +aux.clientes.getDataCadastro()+ 
-									" - Quantidade Aluguel: " +aux.clientes.getQtdeAluguel()); 
+									" - Data Cadastro: " +aux.clientes.getDataCadastro()); 
 				aux = aux.prox;
 			} // fim while
 		} // fim else
@@ -199,8 +191,7 @@ public class OperacoesClientes {
 										" - Nome: " +nodo.clientes.getNome()+
 										" - Endereço: "+ nodo.clientes.getEndereco() + 
 										" - Telefone: " + nodo.clientes.getTelefone() + 
-										" - Data Cadastro: " +nodo.clientes.getDataCadastro() + 
-										" - Quantidade Aluguel: " +nodo.clientes.getQtdeAluguel()); 
+										" - Data Cadastro: " +nodo.clientes.getDataCadastro()); 
 										return true;
 		       }
 			   nodo = nodo.prox;
@@ -220,7 +211,6 @@ public class OperacoesClientes {
 		String Endereco = " ";
 		String Telefone = " ";
 		LocalDate DataCadastro = LocalDate.of(1970, 03, 01);
-		int QtdeAluguel = 0;
 		
 		if (inicio == null) {
 			JOptionPane.showConfirmDialog(null, "Lista Vazia");
@@ -231,7 +221,6 @@ public class OperacoesClientes {
 			Endereco = inicio.clientes.getEndereco();
 			Telefone = inicio.clientes.getTelefone();
 			DataCadastro = inicio.clientes.getDataCadastro();
-			QtdeAluguel = inicio.clientes.getQtdeAluguel();
 						
 			inicio = inicio.prox;			// passar para inicio o enderço do proximos endereço
 			if (inicio != null) {
@@ -242,8 +231,7 @@ public class OperacoesClientes {
 		" - Nome: "+ Nome + 
 		" - Endereco: "+ Endereco + 
 		" - Telefone: "+ Telefone + 
-		" - Data Cadastro: "+ DataCadastro + 
-		" - Quantidade Aluguel: "+ QtdeAluguel;
+		" - Data Cadastro: "+ DataCadastro;
 	} // fim da classe Remove Inicio
 	
 	public String RemoveFinal() {	// remover no final da lista
@@ -252,7 +240,6 @@ public class OperacoesClientes {
 		String Endereco = " ";
 		String Telefone = " ";
 		LocalDate DataCadastro = LocalDate.of(1970, 03, 01);
-		int QtdeAluguel = 0;
 		
 		if (inicio == null ) {
 			JOptionPane.showConfirmDialog(null, "Lista Vázia");
@@ -264,7 +251,6 @@ public class OperacoesClientes {
 				Endereco = inicio.clientes.getEndereco();
 				Telefone = inicio.clientes.getTelefone();
 				DataCadastro = inicio.clientes.getDataCadastro();
-				QtdeAluguel = inicio.clientes.getQtdeAluguel();
 				
 				inicio = null;					// informa que é o ultimo elemento da lista
 			} // fim IF
@@ -284,7 +270,6 @@ public class OperacoesClientes {
 				Endereco = aux.clientes.getEndereco();
 				Telefone = aux.clientes.getTelefone();
 				DataCadastro = aux.clientes.getDataCadastro();
-				QtdeAluguel = aux.clientes.getQtdeAluguel();
 				
 				aux1.anterior = null;
 				aux2.prox = null;			// coloca null para mostrar o fim da lista. 
@@ -295,8 +280,7 @@ public class OperacoesClientes {
 		" - Nome: "+ Nome + 
 		" - Endereco: "+ Endereco + 
 		" - Telefone: "+ Telefone + 
-		" - Data Cadastro: "+ DataCadastro + 
-		" - Quantidade Aluguel: "+ QtdeAluguel;
+		" - Data Cadastro: "+ DataCadastro;
 	} // fim remover no final
 	
 	public NO_Cliente LocalizaDadoRemocaoFim(NO_Cliente aux1, NO_Cliente aux2) {
@@ -312,7 +296,7 @@ public class OperacoesClientes {
 		String Endereco = " ";
 		String Telefone = " ";
 		LocalDate DataCadastro = LocalDate.of(1970, 03, 01);
-		int QtdeAluguel = 0;	
+
 		int i = 1; 
 		
 		NO_Cliente aux = inicio;	// criar um endereçamento aux com valor inicial
@@ -324,14 +308,12 @@ public class OperacoesClientes {
 			Endereco = inicio.clientes.getEndereco();
 			Telefone = inicio.clientes.getTelefone();
 			DataCadastro = inicio.clientes.getDataCadastro();
-			QtdeAluguel = inicio.clientes.getQtdeAluguel();
 			
 			return "CPF_RNE: "+ CPF_RNE +
 			" - Nome: "+ Nome + 
 			" - Endereco: "+ Endereco + 
 			" - Telefone: "+ Telefone + 
-			" - Data Cadastro: "+ DataCadastro + 
-			" - Quantidade Aluguel: "+ QtdeAluguel;
+			" - Data Cadastro: "+ DataCadastro;
 		} // fim IF 
 		
 		if (posicao == 1) {  							// remoção pos = 1, remoção será no inicio da lista
@@ -340,15 +322,13 @@ public class OperacoesClientes {
 			Endereco = aux.clientes.getEndereco();
 			Telefone = aux.clientes.getTelefone();
 			DataCadastro = aux.clientes.getDataCadastro();
-			QtdeAluguel = aux.clientes.getQtdeAluguel();
 			
 			RemoverInicio();
 			return "CPF_RNE: "+ CPF_RNE +
 			" - Nome: "+ Nome + 
 			" - Endereco: "+ Endereco + 
 			" - Telefone: "+ Telefone + 
-			" - Data Cadastro: "+ DataCadastro + 
-			" - Quantidade Aluguel: "+ QtdeAluguel;
+			" - Data Cadastro: "+ DataCadastro;
 		} // Fim IF
 		else {
 			while (aux.prox != null) {  // remover no final da lista
@@ -361,8 +341,7 @@ public class OperacoesClientes {
 				" - Nome: "+ Nome + 
 				" - Endereco: "+ Endereco + 
 				" - Telefone: "+ Telefone + 
-				" - Data Cadastro: "+ DataCadastro + 
-				" - Quantidade Aluguel: "+ QtdeAluguel;
+				" - Data Cadastro: "+ DataCadastro;
 			} // fim IF
 			else if (posicao == i){			// Remoção no final
 				CPF_RNE = aux.clientes.getCPF_RNE();				
@@ -370,14 +349,13 @@ public class OperacoesClientes {
 				Endereco = aux.clientes.getEndereco();
 				Telefone = aux.clientes.getTelefone();
 				DataCadastro = aux.clientes.getDataCadastro();
-				QtdeAluguel = aux.clientes.getQtdeAluguel();
+
 				RemoveFinal();
 				return "CPF_RNE: "+ CPF_RNE +
 				" - Nome: "+ Nome + 
 				" - Endereco: "+ Endereco + 
 				" - Telefone: "+ Telefone + 
-				" - Data Cadastro: "+ DataCadastro + 
-				" - Quantidade Aluguel: "+ QtdeAluguel;
+				" - Data Cadastro: "+ DataCadastro;
 			} // fim else
 			else {						// remover qualquer posição
 				aux = inicio;			// carrega aux com inicio
@@ -393,9 +371,7 @@ public class OperacoesClientes {
 				Nome = aux.clientes.getNome();				
 				Endereco = aux.clientes.getEndereco();
 				Telefone = aux.clientes.getTelefone();
-				DataCadastro = aux.clientes.getDataCadastro();
-				QtdeAluguel = aux.clientes.getQtdeAluguel();
-				
+				DataCadastro = aux.clientes.getDataCadastro();			
 				
 				aux2.prox = aux.prox;
 				aux.prox = aux2;
@@ -406,8 +382,7 @@ public class OperacoesClientes {
 				" - Nome: "+ Nome + 
 				" - Endereco: "+ Endereco + 
 				" - Telefone: "+ Telefone + 
-				" - Data Cadastro: "+ DataCadastro + 
-				" - Quantidade Aluguel: "+ QtdeAluguel;
+				" - Data Cadastro: "+ DataCadastro;
 			} // fim else
 		} // fim else
 	} // fim metodo escolher remover
@@ -424,7 +399,7 @@ public class OperacoesClientes {
 				Endereco = ler.readLine();
 				Telefone = ler.readLine();
 				DataCadastro = LocalDate.parse(ler.readLine()); 
-				QtdeAluguel = Integer.parseInt(ler.readLine());
+
 				linha = ler.readLine();
 			}
 			ler.close();

@@ -1,4 +1,4 @@
 
-- Novo cliente, 1234, Elen, Rua 03, 12344, 2021-05-22, 0
-- Novo cliente, 54321, Luiz, Rua 03, 5432, 2021-05-22, 0
-- Novo cliente, 65432, Wesley, Rua 0394, 908445, 2021-05-22, 0
+- Novo cliente, 1234, Elen, Rua 09, 76543, 2021-05-23, 
+- Novo cliente, 5432, Luiz, Rua 98, 8765, 2021-05-23, 
+- Novo cliente, 9876, Wesley, Rua 98, 543, 2021-05-23, 

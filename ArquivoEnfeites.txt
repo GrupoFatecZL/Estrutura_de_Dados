@@ -1,4 +1,4 @@
 
-- Novo Enfeite, 641, Elen, Rosa, 34.53
-- Novo Enfeite, 195, Batman, Preto, 45.4
-- Novo Enfeite, 765, Superman, vermelho, 45.3
+- Novo Enfeite, 606, Batman, Preto, 34.5
+- Novo Enfeite, 538, Superman, Vermelho, 345.3
+- Novo Enfeite, 790, Barbie, Rosa, 335.3
