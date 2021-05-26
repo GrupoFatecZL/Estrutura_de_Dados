@@ -1,4 +1,4 @@
-package controller;
+package reserva;
 
 public class NO_Reserva {
     public Reserva reservas;
