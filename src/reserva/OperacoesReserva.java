@@ -62,7 +62,7 @@ public class OperacoesReserva {
 						String arquivo = "ArquivoReserva.txt";
 						BuscarItemArquivo(reserva, arquivo);
 					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, "Reserva n�o localizada");
+						JOptionPane.showMessageDialog(null, "Reserva nao localizada");
 					}
 				break;
 
@@ -71,7 +71,7 @@ public class OperacoesReserva {
 				break;
 
 				default:
-					JOptionPane.showMessageDialog(null, "Op��o inv�lida");
+					JOptionPane.showMessageDialog(null, "Opcao invalida");
 			} 
 		} 
 	} 
@@ -86,7 +86,7 @@ public class OperacoesReserva {
 			if ( lerArquivos( arq, Cliente ) == true ) {	
 				reservas.setCliente(Cliente);
 			} else {
-				JOptionPane.showMessageDialog(null, "Cliente n�o localizado, fa�a o cadastro dele");
+				JOptionPane.showMessageDialog(null, "Cliente nao localizado, faca o cadastro dele");
 				Clientes.CadastrarClientes();
 				reservas.setCliente(Cliente);
 			}
@@ -105,7 +105,7 @@ public class OperacoesReserva {
 				reservas.setEnfeite(Enfeite);
 				//CalcularDesconto(PrecoFinal); //Precisamos pegar o pre�o do tema e CalcularDesconto(PrecoFinal);
 			} else {
-				JOptionPane.showMessageDialog(null, "Tema n�o localizado, fa�a o cadastro dele");
+				JOptionPane.showMessageDialog(null, "Tema nao localizado, faca o cadastro dele");
 				Enfeites.CadastrarEnfeites();
 				reservas.setEnfeite(Enfeite);
 			}
@@ -147,8 +147,8 @@ public class OperacoesReserva {
 							" - Preco Final: " + reservas.getPrecoFinal() +
 							" \n Data da Festa: " + reservas.getDataFesta() +
 							" - Horario da Festa: " + reservas.getHoraInicio() +
-							" \n Data de devolu��o: " + reservas.getDataPrevista() +
-							" - Horario de devolu��o: " + reservas.getHoraPrevisto()+
+							" \n Data de devolucao: " + reservas.getDataPrevista() +
+							" - Horario de devolucao: " + reservas.getHoraPrevisto()+
 							" - Quantidade de Aluguel: " + reservas.getQtdeAluguel());
 	} 
 	
@@ -194,7 +194,7 @@ public class OperacoesReserva {
 		     gravar.close();  			
 		} 
 		catch (Exception e) {
-			System.err.println("Ocorreu um erro na grava��o!");
+			System.err.println("Ocorreu um erro na gravacao!");
 		}  	// fim try-catch
 	} // fim gravar  cliente
 
@@ -215,7 +215,7 @@ public class OperacoesReserva {
 				InputStreamReader leitor = new InputStreamReader(fluxo);
 				BufferedReader buffer = new BufferedReader(leitor);
 				String linha = buffer.readLine();
-
+				JOptionPane.showMessageDialog(null, "A lista sera apresentada no console");
 				while (linha != null) {
 					System.out.println(linha);
 					linha = buffer.readLine();
@@ -283,9 +283,6 @@ public class OperacoesReserva {
 					if (palavra.equalsIgnoreCase(buscador)) {
 						JOptionPane.showMessageDialog(null, "Reserva do Enfeite: "+frase[1] +
 							", feita por: "+frase[0]+", no dia: "+frase[4]);
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "Devolucao nao encontrada");
 					}
 				}
 				linha = buffer.readLine();

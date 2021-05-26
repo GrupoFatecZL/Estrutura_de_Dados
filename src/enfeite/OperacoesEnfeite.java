@@ -1,8 +1,6 @@
 package enfeite;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import javax.swing.JOptionPane;
 
@@ -130,7 +128,6 @@ public class OperacoesEnfeite {
 			JOptionPane.showMessageDialog(null, "Lista esta vazia!"); 
 		} // if
 		else {
-			RecuperarListaEnfeites();
 			NO_Enfeite aux1 = inicio;	// criacao de duas variaveis
 			
 			while (aux1 != null) {
@@ -150,7 +147,7 @@ public class OperacoesEnfeite {
 		try {
 			while ( nodo != null ) {
 				if ( tema.equalsIgnoreCase(aux) ) {
-					JOptionPane.showMessageDialog(null, "Enfeite será apresentado no console!"); 
+					JOptionPane.showMessageDialog(null, "Enfeite sera apresentado no console!"); 
 					System.out.println( "Codigo " +nodo.enfeites.getCodTema()+ 
 										" - Tema: "+ nodo.enfeites.getTemaEnfeite()+
 										" - Descricao: " + nodo.enfeites.getDescricaoEnfeite()+
@@ -179,8 +176,7 @@ public class OperacoesEnfeite {
 			codTema1 = inicio.enfeites.getCodTema();				
 			tema1 = inicio.enfeites.getTemaEnfeite();				
 			descricao1 = inicio.enfeites.getDescricaoEnfeite();
-			preco1 = inicio.enfeites.getPreco();
-			JOptionPane.showMessageDialog(null, "Enfeite removido com sucesso!"); 
+			preco1 = inicio.enfeites.getPreco(); 
 
 			inicio = inicio.prox;			// passar para inicio o endereco do proximos endereco
 		} // fim else
@@ -205,12 +201,9 @@ public class OperacoesEnfeite {
 				codTema1 = inicio.enfeites.getCodTema();				
 				tema1 = inicio.enfeites.getTemaEnfeite();				
 				descricao1 = inicio.enfeites.getDescricaoEnfeite();
-				preco1 = inicio.enfeites.getPreco();	
-
-				JOptionPane.showMessageDialog(null, "Enfeite removido com sucesso!"); 	
+				preco1 = inicio.enfeites.getPreco();		
 
 				inicio = null;					// informa que o ultimo elemento da lista
-
 			} // fim if
 			else {		
 				NO_Enfeite aux = LocalizaDadoRemocaoFim(inicio, inicio);
@@ -324,26 +317,4 @@ public class OperacoesEnfeite {
 			} // fim else
 		} // fim else
 	} // fim metodo escolher remover
-
-	public void RecuperarListaEnfeites()  {	
-		try {
-			String fileName = "ArquivoEnfeites.txt";
-			BufferedReader ler = new BufferedReader(new FileReader(fileName));
-			String linha = ler.readLine();
-
-			while ( linha != null ) {        		
-				codTema = Integer.parseInt(ler.readLine());
-				tema = ler.readLine();
-				descricao = ler.readLine();
-				preco = Double.parseDouble(ler.readLine());
-
-				linha = ler.readLine();
-			}
-			ler.close();
-		} 
-		catch (Exception e) {
-			System.err.println("Ocorreu um erro!");
-		} // fim try e catch 
-		
-	} // fim da lista de enfeites
 } // fim classe

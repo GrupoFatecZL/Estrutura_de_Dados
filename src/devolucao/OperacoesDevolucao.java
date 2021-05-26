@@ -170,7 +170,8 @@ public class OperacoesDevolucao {
 				InputStreamReader leitor = new InputStreamReader(fluxo);
 				BufferedReader buffer = new BufferedReader(leitor);
 				String linha = buffer.readLine();
-
+				JOptionPane.showMessageDialog(null, "A lista sera apresentada no console");
+				
 				while (linha != null) {
 					System.out.println(linha);
 					linha = buffer.readLine();
@@ -278,9 +279,6 @@ public class OperacoesDevolucao {
 					if (palavra.equalsIgnoreCase(buscador)) {
 						JOptionPane.showMessageDialog(null, "Devolucao do Enfeite: "+frase[1] +
 							", feita por: "+frase[0]+", no dia: "+frase[4]);
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "Devolucao nao encontrada");
 					}
 				}
 				linha = buffer.readLine();
