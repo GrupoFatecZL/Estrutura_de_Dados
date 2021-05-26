@@ -36,7 +36,7 @@ public class OperacoesClientes {
 				break;
 
 				case 2:	
-					int posicao = Integer.parseInt(JOptionPane.showInputDialog("Digite a posiÃ§Ã£o a ser removida: "));
+					int posicao = Integer.parseInt(JOptionPane.showInputDialog("Digite a posição a ser removida: "));
 					System.out.println(RemoverClientes(posicao));
 				break;
 
@@ -68,7 +68,7 @@ public class OperacoesClientes {
 		Nome = JOptionPane.showInputDialog("Informe o Nome do Cliente: ");
 		cliente.setNome(Nome);
 		
-		Endereco = JOptionPane.showInputDialog("Informe o EndereÃ§o do Cliente: ");
+		Endereco = JOptionPane.showInputDialog("Informe o Endereço do Cliente: ");
 		cliente.setEndereco(Endereco);
 		
 		Telefone = JOptionPane.showInputDialog("Informe o Telefone do Cliente: ");
@@ -90,7 +90,7 @@ public class OperacoesClientes {
 			while (aux.prox != null) {					// buscando o ultimo elemento da lista	
 				aux = aux.prox;						
 			} // fim while
-			NO_Cliente n = new NO_Cliente(cliente);		// cria um novo NÃ³
+			NO_Cliente n = new NO_Cliente(cliente);		// cria um novo Nó
 			aux.prox = n;	
 			n.anterior = aux;
 			n.prox = null;
@@ -137,22 +137,22 @@ public class OperacoesClientes {
 		     gravar.close();  			
 		} 
 		catch (Exception e) {
-			System.err.println("Ocorreu um erro na gravaÃ§Ã£o!");
+			System.err.println("Ocorreu um erro na gravação!");
 		}  	// fim try-catch
 	} // fim gravar  cliente
 	
 	public void ListarClientes() {
 		RecuperarListaClientes();
 		if (inicio == null) {
-			System.out.println("A lista estÃ¡ vazia");
+			System.out.println("A lista está vazia");
 		} // if
 		else {
-			NO_Cliente aux = inicio;	// criaÃ§Ã£o de duas variaveis
-			JOptionPane.showMessageDialog(null, "A lista serÃ¡ mostrada no console");
+			NO_Cliente aux = inicio;	// criação de duas variaveis
+			JOptionPane.showMessageDialog(null, "A lista será mostrada no console");
 			while (aux != null) {
 				System.out.println("\n CPF_RNE: " +aux.clientes.getCPF_RNE() +
 									" - Nome: " +aux.clientes.getNome()+
-									" - EndereÃ§o: "+ aux.clientes.getEndereco()+ 
+									" - Endereço: "+ aux.clientes.getEndereco()+ 
 									" - Telefone: " + aux.clientes.getTelefone()+ 
 									" - Data Cadastro: " +aux.clientes.getDataCadastro()); 
 				aux = aux.prox;
@@ -173,10 +173,10 @@ public class OperacoesClientes {
 			   aux = nodo.clientes.getCPF_RNE();
 			}
 		} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Cliente nÃ£o localizado!9"); 
+				JOptionPane.showMessageDialog(null, "Cliente não localizado!9"); 
 				return false;
 		}
-		JOptionPane.showMessageDialog(null, "Cliente nÃ£o localizado!");
+		JOptionPane.showMessageDialog(null, "Cliente não localizado!");
 		return false;
 	}
 
@@ -186,10 +186,10 @@ public class OperacoesClientes {
 		try {
 			while ( nodo != null ) {
 		       if (CPF_RNE.equalsIgnoreCase(aux)) {
-					JOptionPane.showMessageDialog(null, "Cliente serÃ¡ apresentado em console");
+					JOptionPane.showMessageDialog(null, "Cliente será apresentado em console");
 					System.out.println( "CPF_RNE: " +nodo.clientes.getCPF_RNE() +
 										" - Nome: " +nodo.clientes.getNome()+
-										" - EndereÃ§o: "+ nodo.clientes.getEndereco() + 
+										" - Endereço: "+ nodo.clientes.getEndereco() + 
 										" - Telefone: " + nodo.clientes.getTelefone() + 
 										" - Data Cadastro: " +nodo.clientes.getDataCadastro()); 
 										return true;
@@ -198,10 +198,10 @@ public class OperacoesClientes {
 			   aux = nodo.clientes.getCPF_RNE();
 			}
 		} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Cliente nÃ£o localizado!"); 
+				JOptionPane.showMessageDialog(null, "Cliente não localizado!"); 
 				return false;
 		}
-		JOptionPane.showMessageDialog(null, "Cliente nÃ£o localizado!");
+		JOptionPane.showMessageDialog(null, "Cliente não localizado!");
 		return false;
 	} // fim buscar cliente
 	
@@ -222,7 +222,7 @@ public class OperacoesClientes {
 			Telefone = inicio.clientes.getTelefone();
 			DataCadastro = inicio.clientes.getDataCadastro();
 						
-			inicio = inicio.prox;			// passar para inicio o enderÃ§o do proximos endereÃ§o
+			inicio = inicio.prox;			// passar para inicio o enderço do proximos endereço
 			if (inicio != null) {
 				inicio.anterior = null;
 			}
@@ -242,17 +242,17 @@ public class OperacoesClientes {
 		LocalDate DataCadastro = LocalDate.of(1970, 03, 01);
 		
 		if (inicio == null ) {
-			JOptionPane.showConfirmDialog(null, "Lista VÃ¡zia");
+			JOptionPane.showConfirmDialog(null, "Lista Vázia");
 		}
 		else {
-			if (inicio.prox == null) {			// inicio Ã© o primeiro elemento da lista
+			if (inicio.prox == null) {			// inicio é o primeiro elemento da lista
 				CPF_RNE = inicio.clientes.getCPF_RNE();				
 				Nome = inicio.clientes.getNome();				
 				Endereco = inicio.clientes.getEndereco();
 				Telefone = inicio.clientes.getTelefone();
 				DataCadastro = inicio.clientes.getDataCadastro();
 				
-				inicio = null;					// informa que Ã© o ultimo elemento da lista
+				inicio = null;					// informa que é o ultimo elemento da lista
 			} // fim IF
 			else {
 				NO_Cliente aux1 = inicio;			// gerando duas varias, uma para varrer a lista
@@ -299,7 +299,7 @@ public class OperacoesClientes {
 
 		int i = 1; 
 		
-		NO_Cliente aux = inicio;	// criar um endereÃ§amento aux com valor inicial
+		NO_Cliente aux = inicio;	// criar um endereçamento aux com valor inicial
 		
 		if (inicio == null) {
 			JOptionPane.showConfirmDialog(null, "Lista Vazia !");
@@ -316,7 +316,7 @@ public class OperacoesClientes {
 			" - Data Cadastro: "+ DataCadastro;
 		} // fim IF 
 		
-		if (posicao == 1) {  							// remoÃ§Ã£o pos = 1, remoÃ§Ã£o serÃ¡ no inicio da lista
+		if (posicao == 1) {  							// remoção pos = 1, remoção será no inicio da lista
 			CPF_RNE = aux.clientes.getCPF_RNE();				
 			Nome = aux.clientes.getNome();				
 			Endereco = aux.clientes.getEndereco();
@@ -332,18 +332,18 @@ public class OperacoesClientes {
 		} // Fim IF
 		else {
 			while (aux.prox != null) {  // remover no final da lista
-				aux = aux.prox;   // guarda no aux o endereÃ§o do proximo da posiÃ§Ã£o
-				i++;				// vai guardando os posiÃ§oes ate encontral null
+				aux = aux.prox;   // guarda no aux o endereço do proximo da posição
+				i++;				// vai guardando os posiçoes ate encontral null
 			} // fim While
 			if (posicao > i || posicao <=0) {  // posicoes invalidas
-				JOptionPane.showConfirmDialog(null, "PosiÃ§Ã£o invalida");
+				JOptionPane.showConfirmDialog(null, "Posição invalida");
 				return "CPF_RNE: "+ CPF_RNE +
 				" - Nome: "+ Nome + 
 				" - Endereco: "+ Endereco + 
 				" - Telefone: "+ Telefone + 
 				" - Data Cadastro: "+ DataCadastro;
 			} // fim IF
-			else if (posicao == i){			// RemoÃ§Ã£o no final
+			else if (posicao == i){			// Remoção no final
 				CPF_RNE = aux.clientes.getCPF_RNE();				
 				Nome = aux.clientes.getNome();				
 				Endereco = aux.clientes.getEndereco();
@@ -357,9 +357,9 @@ public class OperacoesClientes {
 				" - Telefone: "+ Telefone + 
 				" - Data Cadastro: "+ DataCadastro;
 			} // fim else
-			else {						// remover qualquer posiÃ§Ã£o
+			else {						// remover qualquer posição
 				aux = inicio;			// carrega aux com inicio
-				NO_Cliente aux2 = aux;			// cria endereÃ§amenteo aux 2 e copia aux
+				NO_Cliente aux2 = aux;			// cria endereçamenteo aux 2 e copia aux
 				
 				while(posicao > 1) {
 					aux2 = aux;

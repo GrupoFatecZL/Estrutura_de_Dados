@@ -1,4 +1,0 @@
-
-- Novo Enfeite, 606, Batman, Preto, 34.5
-- Novo Enfeite, 538, Superman, Vermelho, 345.3
-- Novo Enfeite, 790, Barbie, Rosa, 335.3
