@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import cliente.OperacoesClientes;
@@ -60,7 +61,7 @@ public class OperacoesReserva {
 					String reserva = JOptionPane.showInputDialog("Informe algo informado na reservas: ");
 					try {
 						String arquivo = "ArquivoReserva.txt";
-						BuscarItemArquivo(reserva, arquivo);
+						BuscarReserva(reserva, arquivo);
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, "Reserva nao localizada");
 					}
@@ -95,7 +96,7 @@ public class OperacoesReserva {
 			reservas.setQtdeAluguel(QtdeAluguel);
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
+			JOptionPane.showMessageDialog(null, "Ocorreu um erro ao buscar cliente!");
 		}
 
 		Enfeite = JOptionPane.showInputDialog("Informe o tema que deseja reservar: ");
@@ -103,14 +104,20 @@ public class OperacoesReserva {
 			String arq = "ArquivoEnfeites.txt";
 			if ( lerArquivos( arq, Enfeite ) == true ) {
 				reservas.setEnfeite(Enfeite);
-				//CalcularDesconto(PrecoFinal); //Precisamos pegar o pre�o do tema e CalcularDesconto(PrecoFinal);
 			} else {
 				JOptionPane.showMessageDialog(null, "Tema nao localizado, faca o cadastro dele");
 				Enfeites.CadastrarEnfeites();
 				reservas.setEnfeite(Enfeite);
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
+			JOptionPane.showMessageDialog(null, "Ocorreu um erro ao buscar enfeite!");
+		}
+
+		try {
+			PrecoFinal = CalcularDesconto(Cliente, Enfeite); 
+			reservas.setPrecoFinal(PrecoFinal);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Ocorreu um erro ao calcular preco!");
 		}
 
 		FormaDePagamento = JOptionPane.showInputDialog("Informe a forma de pagamento: ");
@@ -198,13 +205,21 @@ public class OperacoesReserva {
 		}  	// fim try-catch
 	} // fim gravar  cliente
 
-	
-	public double CalcularDesconto(double PrecoFinal) {
+	public double CalcularDesconto(String Cliente, String Enfeite) throws IOException {
+		double precoFinal = Double.parseDouble(BuscarPreco(Enfeite));
+		int Qtde = BuscarQtdeReserva(Cliente);
+		LocalDate Agora = LocalDate.now();
+		LocalDate DataCadastro = LocalDate.parse(BuscarData(Cliente));
+		Period periodo = Period.between(DataCadastro, Agora);
+		int anos = periodo.getYears();
 
-		return PrecoFinal;
+		if ( anos >= 2 || Qtde >= 3 ) {
+			precoFinal = (precoFinal - (precoFinal * 0.10));
+			return precoFinal;
+		}
+		return precoFinal;
 	}
 	
-
 	public void ListarReservas() {
 		String nome = "ArquivoReserva.txt"; 
 		File arq = new File(nome);    
@@ -231,7 +246,6 @@ public class OperacoesReserva {
 			JOptionPane.showMessageDialog(null, "Lista est� vazia!");
 		}
 	}
-
 	
 	public int BuscarQtdeReserva(String buscador) throws IOException {
 		int cont = 0;
@@ -264,9 +278,8 @@ public class OperacoesReserva {
 		}
 		return cont;
 	}	
-
 	
-	public void BuscarItemArquivo( String buscador, String arquivo ) throws IOException {
+	public void BuscarReserva( String buscador, String arquivo ) throws IOException {
 		File arq = new File(arquivo); 
 
 		if (arq.exists() && arq.isFile()) {
@@ -296,7 +309,6 @@ public class OperacoesReserva {
 		}
 	}	
 
-
 	public boolean lerArquivos(String arquivo, String buscador) throws IOException {
 		File arq = new File(arquivo);
 		boolean result = false;
@@ -313,8 +325,7 @@ public class OperacoesReserva {
 				for (String palavra: frase) {
 					if (palavra.equalsIgnoreCase(buscador)) {
 						JOptionPane.showMessageDialog(null, "Localizamos: "+frase[2]);
-						result = true;
-						return result;
+						return true;
 					}
 				}
 				linha = buffer.readLine();
@@ -328,4 +339,65 @@ public class OperacoesReserva {
 		return result;
 	}
 
+	public String BuscarData(String Cliente) throws IOException {
+		String arquivo = "ArquivoClientes.txt"; 
+		File arq = new File(arquivo); 
+		String data = "";
+
+		if (arq.exists() && arq.isFile()) {
+			FileInputStream fluxo = new FileInputStream(arq);
+			InputStreamReader leitor = new InputStreamReader(fluxo);
+			buffer = new BufferedReader(leitor);
+			String linha = buffer.readLine();
+
+			while (linha != null) {
+				String [] frase;
+				frase = linha.split(", ");
+
+				for (String palavra: frase) {
+					if (palavra.equalsIgnoreCase(Cliente)) {
+						data = frase[5];
+					}
+				}
+				linha = buffer.readLine();
+			}
+			buffer.close();
+			leitor.close();
+			fluxo.close();
+		} else {
+			JOptionPane.showMessageDialog(null, "Erro ao buscar data de cadastro do cliente");
+		}
+		return data;
+	}
+
+	public String BuscarPreco(String Enfeite) throws IOException {
+		String arquivo = "ArquivoEnfeites.txt"; 
+		File arq = new File(arquivo); 
+		String preco = "";
+
+		if (arq.exists() && arq.isFile()) {
+			FileInputStream fluxo = new FileInputStream(arq);
+			InputStreamReader leitor = new InputStreamReader(fluxo);
+			buffer = new BufferedReader(leitor);
+			String linha = buffer.readLine();
+
+			while (linha != null) {
+				String [] frase;
+				frase = linha.split(", ");
+
+				for (String palavra: frase) {
+					if (palavra.equalsIgnoreCase(Enfeite)) {
+						preco = frase[4];
+					}
+				}
+				linha = buffer.readLine();
+			}
+			buffer.close();
+			leitor.close();
+			fluxo.close();
+		} else {
+			JOptionPane.showMessageDialog(null, "Erro ao buscar preçodo enfeite");
+		}
+		return preco;
+	}
 }

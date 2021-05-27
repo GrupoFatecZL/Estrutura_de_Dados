@@ -103,8 +103,9 @@ public class OperacoesDevolucao {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
 		} 
-		 DataRetorno = LocalDate.now();
-		 devolucao.setDataRetorno(DataRetorno);
+
+		DataRetorno = LocalDate.now();
+		devolucao.setDataRetorno(DataRetorno);
 		 
 			 
 		try {
@@ -121,16 +122,16 @@ public class OperacoesDevolucao {
 		devolucao.setDataPrevista(DataPrevista);		 
 	
 	   	Period periodo = Period.between(DataRetorno, DataPrevista);
-	  	int atraso=periodo.getDays();
+	  	int atraso = periodo.getDays();
 		String status="";
 
-		if (DataPrevista.compareTo(DataRetorno)>0) {
+		if (DataPrevista.compareTo(DataRetorno) > 0) {
 			status= " produto devolvido antes do prazo";
 		}
-		else if(DataPrevista.compareTo(DataRetorno)<0) {
+		else if(DataPrevista.compareTo(DataRetorno) < 0) {
 			status="Produto devolvido depois do prazo" + atraso+ " dias";
 		}
-		else if (DataPrevista.compareTo(DataRetorno)==0) {
+		else if (DataPrevista.compareTo(DataRetorno) == 0) {
 			status="Produto devolvido devolvido no dia previsto"; 
 		}
 		
@@ -171,7 +172,7 @@ public class OperacoesDevolucao {
 				BufferedReader buffer = new BufferedReader(leitor);
 				String linha = buffer.readLine();
 				JOptionPane.showMessageDialog(null, "A lista sera apresentada no console");
-				
+
 				while (linha != null) {
 					System.out.println(linha);
 					linha = buffer.readLine();
@@ -243,7 +244,7 @@ public class OperacoesDevolucao {
 				for (String palavra: frase) {
 					if (palavra.equalsIgnoreCase(buscador)) {
 						if (arquivo.equalsIgnoreCase("ArquivoReserva.txt")) {
-							ret= frase[4];
+							ret = frase[4];
 
 						} else {
 							
