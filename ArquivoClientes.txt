@@ -1,5 +1,5 @@
 
-- Novo cliente, 123456, Elen, Rua 9, 87654, 2021-05-26, 
-- Novo cliente, 654321, Luiz, Rua 9, 23456, 2021-05-26, 
-- Novo cliente, 98765, Wesley, Rua 2, 7654, 2021-05-26, 
-- Novo cliente, 56789, Vagner, Rua 2, 6543, 2018-05-26, 
+- Novo cliente, 12345, Elen, Rua 01, 9888888, 2021-05-30, 
+- Novo cliente, 54321, Luiz, Rua 02, 977777, 2021-05-30, 
+- Novo cliente, 98765, Wesley, Rua 03, 966666, 2021-05-30, 
+- Novo cliente, 67890, Vagner, Rua 04, 95555, 2021-05-30, 

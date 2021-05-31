@@ -21,9 +21,13 @@ public class OperacoesClientes {
 		int opcao = 0;
 		while (opcao != 9) {
 
-			opcao = Integer.parseInt(JOptionPane.showInputDialog("Menu de Clientes: \n " + "\n1- Cadastrar Cliente"
-					+ "\n2- Remover cliente da lista" + "\n3- Buscar cliente por CPF ou RNE" + "\n4- Listar clientes"
-					+ "\n5- Listar Clientes por nome" + "\n9- Voltar  "));
+			opcao = Integer.parseInt(JOptionPane.showInputDialog("Menu de Clientes: \n " + 
+					"\n1- Cadastrar Cliente"+ 
+					"\n2- Remover cliente da lista" + 
+					"\n3- Buscar cliente por CPF ou RNE" + 
+					"\n4- Listar clientes"+ 
+					"\n5- Ordenar os clientes pelo nome" + 
+					"\n9- Voltar  "));
 
 			switch (opcao) {
 			case 1:
