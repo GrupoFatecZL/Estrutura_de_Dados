@@ -202,8 +202,8 @@ public class OperacoesReserva {
 		} 
 		catch (Exception e) {
 			System.err.println("Ocorreu um erro na gravacao!");
-		}  	// fim try-catch
-	} // fim gravar  cliente
+		}  	
+	} 
 
 	public double CalcularDesconto(String Cliente, String Enfeite) throws IOException {
 		double precoFinal = Double.parseDouble(BuscarPreco(Enfeite));

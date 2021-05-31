@@ -3,58 +3,58 @@ package cliente;
 import java.time.LocalDate;
 
 public class Clientes {
-    
-    private String CPF_RNE;
-    private String Nome;
-    private String Telefone;
-    private String Endereco;
-    private LocalDate DataCadastro;
 
-    public Clientes(String CPF_RNE, String Nome, String Telefone, String Endereco, LocalDate DataCadastro) {
-        this.CPF_RNE = CPF_RNE; 
-        this.Nome = Nome;
-        this.Telefone = Telefone;
-        this.Endereco = Endereco;
-        this.DataCadastro = DataCadastro;
-    }
+	private String CPF_RNE;
+	private String Nome;
+	private String Telefone;
+	private String Endereco;
+	private LocalDate DataCadastro;
 
-    public String getCPF_RNE() {
-        return CPF_RNE;
-    }
+	public Clientes(String CPF_RNE, String Nome, String Telefone, String Endereco, LocalDate DataCadastro) {
+		this.CPF_RNE = CPF_RNE;
+		this.Nome = Nome;
+		this.Telefone = Telefone;
+		this.Endereco = Endereco;
+		this.DataCadastro = DataCadastro;
+	}
 
-    public void setCPF_RNE(String cPF_RNE) {
-        CPF_RNE = cPF_RNE;
-    }
+	public String getCPF_RNE() {
+		return CPF_RNE;
+	}
 
-    public String getNome() {
-        return Nome;
-    }
+	public void setCPF_RNE(String cPF_RNE) {
+		CPF_RNE = cPF_RNE;
+	}
 
-    public void setNome(String nome) {
-        Nome = nome;
-    }
+	public String getNome() {
+		return Nome;
+	}
 
-    public String getTelefone() {
-        return Telefone;
-    }
+	public void setNome(String nome) {
+		Nome = nome;
+	}
 
-    public void setTelefone(String telefone) {
-        Telefone = telefone;
-    }
+	public String getTelefone() {
+		return Telefone;
+	}
 
-    public String getEndereco() {
-        return Endereco;
-    }
+	public void setTelefone(String telefone) {
+		Telefone = telefone;
+	}
 
-    public void setEndereco(String endereco) {
-        Endereco = endereco;
-    }
+	public String getEndereco() {
+		return Endereco;
+	}
 
-    public LocalDate getDataCadastro() {
-        return DataCadastro;
-    }
+	public void setEndereco(String endereco) {
+		Endereco = endereco;
+	}
 
-    public void setDataCadastro(LocalDate dataCadastro) {
-        DataCadastro = dataCadastro;
-    }
+	public LocalDate getDataCadastro() {
+		return DataCadastro;
+	}
+
+	public void setDataCadastro(LocalDate dataCadastro) {
+		DataCadastro = dataCadastro;
+	}
 }
