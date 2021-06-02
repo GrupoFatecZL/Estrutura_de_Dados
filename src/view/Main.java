@@ -2,7 +2,8 @@ package view;
 
 /*
 Elen Carvalho de Oliveira - RA: 1110482013042
-Luiz Antonio de Arruda - RA: 11100482013040
+Luiz Antonio de Arruda - RA: 1110482013040
+Vagner da Silva Feitosa  RA:1110481923033
 Wesley Silva de Assis - RA: 1110482013028
 */
 

@@ -1,5 +1,5 @@
 
-- Novo Enfeite, 389, Batman, Preto, 78.0
-- Novo Enfeite, 826, SuperMan, 45.3, 45.9
-- Novo Enfeite, 240, Barbie, Rosa, 55.5
-- Novo Enfeite, 959, Super Mario, Azul, 92.3
+- Novo Enfeite, 794, Batman, Preto, 45.0
+- Novo Enfeite, 757, Superman, Vermelho, 98.0
+- Novo Enfeite, 952, Barbie, Rosa, 45.0
+- Novo Enfeite, 916, Supermario, azul, 67.0

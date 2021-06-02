@@ -3,7 +3,6 @@ package enfeite;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import javax.swing.JOptionPane;
-
 public class OperacoesEnfeite {
 
 	private int codTema;
@@ -25,6 +24,7 @@ public class OperacoesEnfeite {
 			"\n2- Remover da enfeite da lista"+
 			"\n3- Buscar enfeite por tema"+
 			"\n4- Listar enfeites"+
+			"\n5- Ordenar enfeites por tema(QuickSort)"+
 			"\n9- Voltar  "));
 			
 			switch (opcao) {
@@ -45,6 +45,22 @@ public class OperacoesEnfeite {
 				case 4:
 					ListarEnfeites();
 				break;
+				
+				case 5:			
+					
+					int[] vet1 = null;
+					Enfeites[] vet = converteNoVetor(vet1);
+					quickSort(vet, 0, vet.length - 1);
+					
+					JOptionPane.showMessageDialog(null, "A lista sera mostrada no console");
+					for (int j = 0; j < vet.length; j++) {
+						System.out.println("\n Codigo: " + vet[j].getCodTema() + 
+								" - Tema: " + vet[j].getTemaEnfeite()+ 
+								" - Descricao: " + vet[j].getDescricaoEnfeite() + 
+								" - Preco: R$ " + vet[j].getPreco());
+					}
+					
+	            break;    
 		
 				case 9:
 					JOptionPane.showMessageDialog(null, "Voltando ao menu anterior");
@@ -54,6 +70,68 @@ public class OperacoesEnfeite {
 			} // fim switch
 		} // fim while
 	} // fim cadastro enfeites
+	
+	//Metodo Obter tamanho da lista
+	public int obterTamanho() {
+		NO_Enfeite aux = inicio;
+		int contador = 0;
+		while (aux != null) {
+			contador = contador + 1;
+			aux = aux.prox;
+		}
+		return contador;
+	}	
+	//Metodo Converter lista em vetor
+	public Enfeites[] converteNoVetor(int[] vet) {
+		NO_Enfeite aux = inicio;
+		int cont = 0;
+		int tamanho = obterTamanho();
+		Enfeites[] vet1 = new Enfeites[tamanho];
+		while (aux != null) {
+			vet1[cont] = aux.enfeites;
+			aux = aux.prox;
+			cont++;
+	
+		}
+		return vet1;
+	}	
+	
+	// Metodo Ordenacao por quickSort
+	public Enfeites[] quickSort(Enfeites vet[], int ini, int fim) {
+
+		int divisao;
+		if (ini < fim) {
+			divisao = particao(vet, ini, fim);
+			quickSort(vet, ini, divisao - 1);
+			quickSort(vet, divisao + 1, fim);
+		}
+		return vet;
+	}	
+
+	public int particao(Enfeites[] vet, int ini, int fim) {
+		Enfeites pivo = vet[ini];
+		int i = ini + 1, f = fim;
+		Enfeites aux;
+		while (i <= f) {
+			while (i <= fim && (vet[i].getTemaEnfeite().compareTo(pivo.getTemaEnfeite()) <= 0))
+				++i;
+			while ((pivo.getTemaEnfeite().compareTo(vet[f].getTemaEnfeite()) < 0))
+				--f;
+			if (i < f) {
+				aux = vet[i];
+				vet[i] = vet[f];
+				vet[f] = aux;
+				++i;
+				--f;
+			}
+		}
+		if (ini != f) {
+			vet[ini] = vet[f];
+			vet[f] = pivo;
+		}
+		return f;
+	}//Fim quickSort
+
 	
 	public void CadastrarEnfeites() {   // adicionar no final da lista
 		Enfeites enfeites = new Enfeites(codTema, tema, descricao, preco);
@@ -134,7 +212,7 @@ public class OperacoesEnfeite {
 				System.out.println( "Codigo: " +aux1.enfeites.getCodTema() +
 									" - Tema: " +aux1.enfeites.getTemaEnfeite()+
 									" - Descricao: "+ aux1.enfeites.getDescricaoEnfeite() + 
-									" - Preco: " + aux1.enfeites.getPreco()); 
+									" - Preco: R$ " + aux1.enfeites.getPreco()); 
 				aux1 = aux1.prox;
 			} // fim while
 		} // fim else
